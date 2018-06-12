@@ -1,24 +1,24 @@
 import React from 'react'
-import { InputModel, Input, TextUnderInput } from './styles';
+import { InputModel, Input, NumberDesc } from './styles';
 
-export const InputTemplate = ({
+export const InputNumber = ({
     id,
     type,
     placeholder,
-    name={name},
+    name,
     onChange,
-    checked,
-    italic
+    desc
 }) => (
-  <InputModel>
+  <InputModel type={type}>
     <Input 
       id={id}
       type={type}
       placeholder={placeholder}
       name={name}
       onChange={onChange}
-      checked={checked}
     />
-    <TextUnderInput>{italic}</TextUnderInput>
+    <NumberDesc>
+      {desc}
+    </NumberDesc>
   </InputModel>  
 );

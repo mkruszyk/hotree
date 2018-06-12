@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
+
 export const InputModel = styled.div`
-  width: 800px;
 `;
 
 export const Input = styled.input`
-  width: 400px;
+  width: 70px;
+  text-align: center;
 `;
 
-export const TextUnderInput = styled.span`
-  font-style: italic;
-  font-size: 12px;
+export const NumberDesc = styled.span`
+  margin-left: 12px;
 `;

@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { ThemeProvider } from "styled-components";
 
-import Navbar from '../organisms/Navbar/index';
-import EventForm from '../organisms/EventForm/index';
-// import 'normalize.css/normalize.css';
+import { theme } from '../../theme/globalStyle';
+import Navbar from "../organisms/Navbar/index";
+import EventForm from "../organisms/EventForm/index";
+import "normalize.css/normalize.css";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Navbar />
-        <EventForm />
-      </div>
+      <ThemeProvider theme={theme}>
+        <div>
+          <Navbar />
+          <EventForm />
+        </div>
+      </ThemeProvider>
     );
   }
 }
