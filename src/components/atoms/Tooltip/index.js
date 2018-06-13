@@ -1,9 +1,12 @@
 import React from 'react';
 
-import { TooltipContainer, TooltipText } from './styles';
+import { TooltipContainer, TooltipWrapper, TooltipText } from './styles';
 
 export const Tooltip = ({ isVisible, text }) => (
+
   <TooltipContainer isVisible={isVisible}>
-    <TooltipText>{text}</TooltipText>
+    <TooltipWrapper>
+      <TooltipText>{text}</TooltipText>
+    </TooltipWrapper>
   </TooltipContainer>
 );

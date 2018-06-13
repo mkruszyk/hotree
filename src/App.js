@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
 
-import { colors } from '../theme/colors';
-import Navbar from '../components/page/Navbar';
-import EventForm from '../components/page/EventForm';
+import { colors } from './utils/constants/colors';
+import Navbar from './components/page/Navbar';
+import EventForm from './components/page/EventForm';
 
 class App extends Component {
   render() {

@@ -1,9 +1,10 @@
 import React from "react";
-import { InputContainer, InputTemplate } from "./styles";
+import { InputContainer, InputTemplate, Label } from "./styles";
 
 export const Input = ({
   checked,
   id,
+  desc,  
   min,
   max,
   name,
@@ -27,5 +28,6 @@ export const Input = ({
       type={type}
       required={required}
     />
+    {desc && (<Label>{desc}</Label>)}
   </InputContainer>
 );

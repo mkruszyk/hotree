@@ -1,10 +1,12 @@
 import React from 'react';
-import { Nav, Container, Title } from './styles';
+import { Nav, Container, NavList, Title } from './styles';
 
 const Navbar = () => (
   <Nav>
     <Container>
-      <Title>New Event</Title>
+      <NavList>
+        <Title>New Event</Title>
+      </NavList>
     </Container>
   </Nav>
 );

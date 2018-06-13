@@ -1,6 +1,10 @@
 import React from 'react';
-import { FieldTitle } from './styles';
+import { FieldTitle, Mandatory } from './styles';
 
-export const Title = ({ desc }) => (
-  <FieldTitle>{desc}</FieldTitle>
+export const Title = ({ desc, mandatory }) => (
+  <FieldTitle>
+    {desc}
+    {mandatory && (<Mandatory>  *</Mandatory>)}
+  </FieldTitle>
 );
+// name zamiast desc

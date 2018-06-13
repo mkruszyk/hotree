@@ -6,5 +6,7 @@ export const colors = {
   formBackground: '#FFF',
   greenText: '#70BE75',
   greenSuccessInfo: '#EFFBF2',
-  greyText: '#F7F7F7'
+  greyText: '#F7F7F7',
+  warningRed: '#FFADAE',
+  inputColor: "#2D2D2D"
 };

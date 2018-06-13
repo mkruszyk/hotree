@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const InputModel = styled.div`
-  grid-area: input;
+export const Field = styled.div`
   align-self:  center;
 `;
 

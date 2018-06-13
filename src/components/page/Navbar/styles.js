@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.ul` 
-  width: 1170px;
+export const Container = styled.div` 
+  max-width: 1170px;
   margin: 0 auto;
 `
 
@@ -14,8 +14,14 @@ export const Nav = styled.nav`
   padding: 10px 0;
 `;
 
-export const Title = styled.h2` 
+export const NavList = styled.ul`
+  padding: 0;
+`;
+
+export const Title = styled.h1` 
   color: white;
-  margin: 16px 0;
+  font-size: 32px;
+  display: inline-block;
+  margin: 4px 0 0 230px;
   font-weight: 200;
 `;

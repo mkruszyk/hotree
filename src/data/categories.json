@@ -1,42 +1,42 @@
-export const categories = [
+[
   {
-    "id": 0,
+    "id": 1,
     "name": "Cycling"
   },
   {
-    "id": 1,
+    "id": 2,
     "name": "Hiking"
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "Cooking"
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Rock climbing"
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Yoga"
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Fencing"
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Swimming"
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Badminton"
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Running"
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Dance"
   }
 ]

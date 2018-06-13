@@ -1,26 +1,25 @@
 import React from 'react';
 
 import { Select } from '../../atoms/Select';
-import { ItalicDescription } from '../../atoms/ItalicDescription';
 
-import { Field } from './styles';
+import { Field, Description } from './styles';
 
 export const SelectField = ({ 
-  categories, 
   desc,
   id, 
   name,
   onChange, 
+  options, 
   required
 }) => (
   <Field>
     <Select 
-      categories={categories} 
+      options={options} 
       id={id} 
       name={name} 
       onChange={onChange} 
       required={required} 
     />
-    <ItalicDescription desc={desc} />
+    <Description>{desc}</Description>
   </Field>
 );

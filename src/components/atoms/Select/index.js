@@ -1,13 +1,18 @@
 import React from 'react';
 
+import { SelectContainer } from './styles';
+
 export const Select = ({
-  categories,
   id,
   onChange,
+  options,
 }) => (
-  <select id={id} onChange={() => onChange()}>
-    <option key="00" value="">Select category (skills, interests, location)</option>
-    {categories.map(item => (
+  <SelectContainer 
+    id={id} 
+    onChange={() => onChange()}
+  >
+    <option key="0" value="">Select category (skills, interests, locations)</option>
+    {options.map(item => (
         <option 
           key={item.id} 
           value={item.name}
@@ -16,5 +21,5 @@ export const Select = ({
         </option>
       )
     )}
-  </select>
+  </SelectContainer>
 );

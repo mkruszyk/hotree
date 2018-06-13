@@ -1,5 +1,5 @@
 import React from "react";
-import { InputModel, Input, RadioDescription } from "./styles";
+import { Field, Input, RadioDescription } from "./styles";
 
 export const RadioField = ({ 
   id,
@@ -8,7 +8,7 @@ export const RadioField = ({
   desc, 
   onChange, 
 }) => (
-  <InputModel>
+  <Field>
     <Input 
       id={id}
       name={name}
@@ -19,5 +19,5 @@ export const RadioField = ({
     <RadioDescription>
       {desc}
     </RadioDescription>
-  </InputModel>
+  </Field>
 );

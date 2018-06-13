@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 
 import { Textarea } from '../../atoms/Textarea';
-import { ItalicDescription } from '../../atoms/ItalicDescription';
 
-import { TextareaContainer, TextareaDescription } from "./styles";
+import { Field, TextareaDescription, Description } from "./styles";
 
 class TextareaField extends Component {
   constructor(props) {
     super(props) 
     this.state = {
-      character: ""
+      character: ''
     }
   }
   render() {
     return (
-      <TextareaContainer>
+      <Field>
         <Textarea placeholder={this.props.placeholder} />
         <TextareaDescription>
-          <ItalicDescription>{ this.props.desc }</ItalicDescription>
-          <ItalicDescription>0/140</ItalicDescription>
+          <Description>{this.props.desc}</Description>
+          <Description>0/140</Description>
         </TextareaDescription>
-      </TextareaContainer>
+      </Field>
     );
   }
 }

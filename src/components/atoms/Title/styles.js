@@ -5,7 +5,12 @@ export const FieldTitle = styled.div`
   text-transform: uppercase;
   width: 150px;
   margin-top: 8px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 300;
-  grid-area: title;
+  flex: 1;
+  max-width: 135px;
+`;
+
+export const Mandatory = styled.span`
+  color: ${props => props.theme.warningRed};
 `;

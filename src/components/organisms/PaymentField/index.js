@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import { NumberField } from '../../molecules/NumberField';
+import { Input } from '../../atoms/Input';
 import { RadioField } from '../../molecules/RadioField';
 
+import { Field } from './styles';
 
 class PaymentField extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class PaymentField extends Component {
 
   render() {
     return (
-      <div>
+      <Field>
         <RadioField
           id="free-event"
           name="freeEvent"
@@ -34,13 +35,14 @@ class PaymentField extends Component {
           desc="Paid event"
           onChange={this.switchPayment}
         />
-        <NumberField 
+        <Input 
+          desc="$"
           id="fee"
           name="fee"
           placeholder="Fee"
-          desc="$"
+          type="number"
         />
-      </div>
+      </Field>
     )
   }
 }
