@@ -1,19 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
-import { TextareaContainer, TextBox, TextDesc, TextCounter } from "./styles";
+import { TextBox } from "./styles";
 
-class Textarea extends Component {
-  render() {
-    return (
-      <TextareaContainer>
-        <TextBox placeholder={this.props.placeholder}/>
-        <TextDesc>
-          <span>{this.props.desc}</span>
-          <span>0/140</span>
-        </TextDesc>
-      </TextareaContainer>
-    );
-  }
-}
+export const Textarea = ({ placeholder }) => (
+  <TextBox placeholder={placeholder} />
+);
 
-export default Textarea;

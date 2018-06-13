@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Tooltip, TooltipText } from './styles';
+import { TooltipContainer, TooltipText } from './styles';
 
-export const InputTooltip = (props) => (
-  <Tooltip isVisible={props.isVisible}>
-    <TooltipText>{props.text}</TooltipText>
-  </Tooltip>
+export const Tooltip = ({ isVisible, text }) => (
+  <TooltipContainer isVisible={isVisible}>
+    <TooltipText>{text}</TooltipText>
+  </TooltipContainer>
 );

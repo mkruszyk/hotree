@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
 
-import { theme } from '../../theme/globalStyle';
-import Navbar from "../organisms/Navbar/index";
-import EventForm from "../organisms/EventForm/index";
-import "normalize.css/normalize.css";
+import { colors } from '../theme/colors';
+import Navbar from '../components/page/Navbar';
+import EventForm from '../components/page/EventForm';
 
 class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={colors}>
         <div>
           <Navbar />
           <EventForm />

@@ -1,5 +1,4 @@
-import { injectGlobal, ThemeProvider } from 'styled-components';
-
+import { injectGlobal } from 'styled-components';
 
 injectGlobal`
   body {
@@ -27,15 +26,4 @@ injectGlobal`
     margin: 0; 
   }
 `;
-
-export const theme = {
-  darkBlue: '#1B376C',
-  blue: '#305595',
-  lightBlue: '#8AA0BF',
-  orange: '#FD8C25',
-  formBg: '#FFF',
-  greenText: '#70BE75',
-  greenSuccessInfo: '#EFFBF2',
-  greyText: '#F7F7F7'
-};
 

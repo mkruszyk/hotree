@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const Tooltip = styled.div`
+export const TooltipContainer = styled.div`
   display: ${props => (props.isVisible ? "block" : "none")};
   background-color: red;
-  width: 200px;
+  width: 100px;
 `;
 
 export const TooltipText = styled.span`

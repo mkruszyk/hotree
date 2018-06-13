@@ -1,8 +1,8 @@
 import React from 'react'
 
-import About from '../../molecules/About/index';
-import Coordinator from '../../molecules/Coordinator/index';
-import When from '../../molecules/When/index';
+import About from '../../template/About';
+import Coordinator from '../../template/Coordinator';
+import When from '../../template/When';
 import { Container } from './styles';
 
 const EventForm = () => (
