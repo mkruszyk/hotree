@@ -17,5 +17,5 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://github.com/mkruszyk/hotree"
+  "homepage": "https://mkruszyk.github.io/hotree"
 }
