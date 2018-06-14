@@ -44,6 +44,7 @@ class About extends Component {
           />
           <FormField 
             titleDesc="CATEGORY"
+            isCategory="true"
             isSelect="true"
             selectId="category"
             selectDesc="Describes topic and people who should be interest in this event"

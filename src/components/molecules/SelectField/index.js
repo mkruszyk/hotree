@@ -9,12 +9,14 @@ export const SelectField = ({
   id, 
   onChange, 
   options, 
+  isCategory
 }) => (
   <Field>
     <Select 
       id={id} 
       options={options} 
       onChange={onChange} 
+      isCategory={isCategory}
     />
     <Description>{desc}</Description>
   </Field>

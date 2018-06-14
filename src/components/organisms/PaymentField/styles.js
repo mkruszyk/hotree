@@ -10,5 +10,6 @@ export const Field = styled.div`
 `;
 
 export const PaidEvent = styled.div`
+  align-items: center;
   display: flex;
 `;

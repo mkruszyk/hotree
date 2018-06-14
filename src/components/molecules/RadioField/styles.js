@@ -1,13 +1,10 @@
-import styled from 'styled-components';
-
-import { media } from "../../../utils/constants/mediaQueries";
+import styled from "styled-components";
 
 export const Field = styled.div`
-  align-self:  center;
-  @media (${media.smallMobile}) {
-    align-self: auto;
-    margin: 8px 0;
-  }
+  align-items: center;
+  display: flex;
+  height: 40px;
+  margin-left: ${props => props.withLeftMargin ? '14px' : '0'}
 `;
 
 export const Input = styled.input`

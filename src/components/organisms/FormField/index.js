@@ -8,6 +8,7 @@ import { SelectField } from "../../molecules/SelectField";
 import TextareaField from "../../molecules/TextareaField";
 
 import PaymentField from "../PaymentField";
+import DateField from "../DateField";
 
 import { Field } from "./styles";
 
@@ -34,7 +35,9 @@ export const FormField = ({
   isTooltip,
   tooltipText,
   tooltipIsVisible,
-  isPayment
+  isPayment,
+  isDate,
+  isCategory
 }) => (
   <Field>
     <Title 
@@ -63,12 +66,16 @@ export const FormField = ({
       <SelectField
         desc={selectDesc}
         id={selectId}
+        isCategory={isCategory}
         options={selectOptions}
         onChange={selectOnChange}
       />
     )}
     {isPayment && (
       <PaymentField />
+    )}
+    {isDate && (
+      <DateField />
     )}
     {isTooltip && (
       <Tooltip 

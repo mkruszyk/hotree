@@ -1,14 +1,16 @@
 import React from "react";
-import { Field, Input, RadioDescription } from "./styles";
+import { Input, Field, RadioDescription } from "./styles";
 
+ 
 export const RadioField = ({ 
   id,
   name,
   checked, 
   desc, 
   onChange, 
+  withLeftMargin
 }) => (
-  <Field>
+  <Field withLeftMargin={withLeftMargin} >
     <Input 
       id={id}
       name={name}

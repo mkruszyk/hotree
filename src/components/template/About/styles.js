@@ -10,6 +10,10 @@ export const Form = styled.div`
   max-width: 730px;
   margin: 20px 20px;
   padding: 16px 40px;
+  width: 88%;
+  @media (${media.mobile}) {
+    width: 75%;
+  }
   @media (${media.smallMobile}) {
     margin: 20px 5px;
   }

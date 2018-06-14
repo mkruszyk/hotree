@@ -8,10 +8,13 @@ export const SelectContainer = styled.select`
   -moz-appearance: none;
   width: ${inputWidth["select"]};
   background-color: #fff0;
-  padding: 8px;
   background-position: right 50%;
   background-repeat: no-repeat;
   background-image: url(${arrow});
   padding: .5em;
   padding-right: 1.5em
+`;
+
+export const Option = styled.option`
+  padding-left: 100px;
 `;

@@ -4,7 +4,7 @@ import { InputContainer, InputTemplate, Label } from "./styles";
 export const Input = ({
   checked,
   id,
-  desc,  
+  desc,
   min,
   max,
   name,
@@ -12,7 +12,7 @@ export const Input = ({
   onChange,
   placeholder,
   type,
-  required
+  required,
 }) => (
   <InputContainer>
     <InputTemplate

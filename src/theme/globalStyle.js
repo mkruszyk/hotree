@@ -1,4 +1,4 @@
-import { injectGlobal } from 'styled-components';
+import { injectGlobal } from "styled-components";
 
 injectGlobal`
   body {
@@ -23,7 +23,6 @@ injectGlobal`
       color: #a3a3a3;
     }
   }
-
   input[type=number]::-webkit-inner-spin-button, 
   input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
@@ -31,5 +30,8 @@ injectGlobal`
     appearance: none;
     margin: 0; 
   }
-`;
 
+  input[type=date]::-webkit-calendar-picker-indicator {
+    color: #8AA0BF;
+  }
+`;
