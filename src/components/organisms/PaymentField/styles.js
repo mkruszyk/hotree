@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 
+import { media } from "../../../utils/constants/mediaQueries";
+
 export const Field = styled.div`
   display: flex;
-  flex: 4;
-  max-width: 460px;
+  @media (${media.smallMobile}) {
+    flex-direction: column;
+  }
+`;
+
+export const PaidEvent = styled.div`
+  display: flex;
 `;

@@ -14,7 +14,7 @@ export const RadioField = ({
       name={name}
       type="radio"
       checked={checked}
-      onChange={() => onChange()}
+      onChange={onChange}
     />
     <RadioDescription>
       {desc}

@@ -1,12 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.div` 
-  max-width: 1170px;
+export const Container = styled.div`
+  max-width: 800px;
   margin: 0 auto;
-`
+`;
 
 export const Nav = styled.nav`
-  border-top: 12px solid #1B376C;
+  border-top: 12px solid #1b376c;
   background-color: #305595;
   width: 100%;
   height: 60px;
@@ -18,10 +18,11 @@ export const NavList = styled.ul`
   padding: 0;
 `;
 
-export const Title = styled.h1` 
+export const Title = styled.h1`
   color: white;
   font-size: 32px;
   display: inline-block;
-  margin: 4px 0 0 230px;
+  margin: 0;
+  margin-left: 60px;
   font-weight: 200;
 `;

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Field = styled.div`
-  flex: 4;
-  max-width: 460px;
 `;
 
 export const TextareaDescription = styled.div`

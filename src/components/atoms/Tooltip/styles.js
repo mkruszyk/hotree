@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
+import { media } from "../../../utils/constants/mediaQueries";
+
 export const TooltipContainer = styled.div`
   visibility: ${props => (props.isVisible ? "visible" : "hidden")};
-  flex: 1;
   position: relative;
   display: flex;
+  justify-content: center;
+  grid-area: tooltip;
+  @media (${media.mobile}) {
+    margin-top: 8px;
+  }
 `;
 
 export const TooltipWrapper = styled.div`
@@ -23,6 +29,9 @@ export const TooltipText = styled.span`
   position: relative;
   width: 125px;
   visibility: visible;
+  @media (${media.mobile}) {
+    width: 165px;
+  }
   &:before {
     border-color: ${props => props.theme.warningRed} transparent transparent transparent;
     border-style: solid;
@@ -32,5 +41,10 @@ export const TooltipText = styled.span`
     top: calc(55% - 6px);
     left: -7%;
     transform: rotate(90deg);
+    @media (${media.mobile}) {
+      transform: rotate(180deg);
+      top: -40%;
+      left: calc(50% - 10px);
+    }
   }
 `;

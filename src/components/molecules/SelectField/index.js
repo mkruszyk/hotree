@@ -7,18 +7,14 @@ import { Field, Description } from './styles';
 export const SelectField = ({ 
   desc,
   id, 
-  name,
   onChange, 
   options, 
-  required
 }) => (
   <Field>
     <Select 
-      options={options} 
       id={id} 
-      name={name} 
+      options={options} 
       onChange={onChange} 
-      required={required} 
     />
     <Description>{desc}</Description>
   </Field>
