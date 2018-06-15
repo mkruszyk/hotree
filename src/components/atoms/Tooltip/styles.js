@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { media } from "../../../utils/constants/mediaQueries";
+import { media } from "../../../utils/styles/mediaQueries";
 
 export const TooltipContainer = styled.div`
   visibility: ${props => (props.isVisible ? "visible" : "hidden")};
@@ -23,14 +23,15 @@ export const TooltipText = styled.span`
   background-color: ${props => props.theme.warningRed};
   border-radius: 3px;
   color: white;
-  font-size: 11px;
+  font-size: 1.1rem;
   text-align: center;
   padding: 5px 0px;
   position: relative;
   width: 125px;
   visibility: visible;
   @media (${media.mobile}) {
-    width: 165px;
+    width: 200px;
+    font-size: 1.4rem;
   }
   &:before {
     border-color: ${props => props.theme.warningRed} transparent transparent transparent;
@@ -43,7 +44,7 @@ export const TooltipText = styled.span`
     transform: rotate(90deg);
     @media (${media.mobile}) {
       transform: rotate(180deg);
-      top: -40%;
+      top: -38%;
       left: calc(50% - 10px);
     }
   }

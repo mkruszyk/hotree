@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { inputWidth } from "../../../utils/constants/inputWidth";
-import { media } from "../../../utils/constants/mediaQueries";
+import { inputWidth } from "../../../utils/styles/inputWidth";
+import { media } from "../../../utils/styles/mediaQueries";
 
 export const InputContainer = styled.div`
   grid-area: field;
@@ -9,13 +9,22 @@ export const InputContainer = styled.div`
 
 export const InputTemplate = styled.input`
   width: ${props => inputWidth[props.type]};
+  @media (${media.tablet}) {
+    width: ${props => 
+      props.type === 'number'
+        ? inputWidth.numberMobile
+        : inputWidth[props.type] 
+      };
+  }
 `;
 
-export const Label = styled.div`
+export const Label = styled.p`
   display: inline-block;
   margin-left: 12px;
   margin-right: 12px;
-  @media (${media.smallMobile}) {
-    margin: 6px 0 0 4px;
+  font-size: 1.4rem;
+  @media (${media.tablet}) {
+    font-size: 1.6rem;
   }
 `;
+

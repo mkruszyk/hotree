@@ -20,7 +20,7 @@ export const NavList = styled.ul`
 
 export const Title = styled.h1`
   color: white;
-  font-size: 32px;
+  font-size: 3.2rem;
   display: inline-block;
   margin: 0;
   margin-left: 60px;

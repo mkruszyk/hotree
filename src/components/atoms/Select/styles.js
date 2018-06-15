@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { inputWidth } from '../../../utils/constants/inputWidth';
+import { inputWidth } from '../../../utils/styles/inputWidth';
 import arrow from '../../../assets/images/arrow.svg';
 
 export const SelectContainer = styled.select`

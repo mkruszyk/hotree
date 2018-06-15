@@ -4,24 +4,23 @@ import { SelectContainer, Option } from './styles';
 
 export const Select = ({
   id,
+  placeholder,
   onChange,
   options,
-  isCategory,
+  value,
 }) => (
   <SelectContainer 
     id={id} 
     onChange={() => onChange()}
-  >
-    {isCategory && (
-      <Option key="0" value="">Select category (skills, interests, locations)</Option>
-    )}
+    value={value}
+  > 
+    <Option>{placeholder}</Option>
     {options.map(item => (
         <Option 
           key={item.id} 
           value={item.name}
-          selected={item.name === "Walter" ? true : false}
         >
-          {item.name === "Walter" ? 'Me - ' : ''} 
+          {item.name === value ? 'Me - ' : ''} 
           {item.name} {item.lastname} 
         </Option>
       )

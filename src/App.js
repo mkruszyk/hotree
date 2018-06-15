@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
 
-import { colors } from './utils/constants/colors';
+import { colors } from './utils/styles/colors';
 import Navbar from './components/page/Navbar';
 import EventForm from './components/page/EventForm';
 

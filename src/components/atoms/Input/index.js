@@ -28,6 +28,6 @@ export const Input = ({
       type={type}
       required={required}
     />
-    {desc && (<Label>{desc}</Label>)}
+    {desc && (<Label name={name}>{desc}</Label>)}
   </InputContainer>
 );

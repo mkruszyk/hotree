@@ -26,8 +26,10 @@ export const FormField = ({
   isSelect,
   selectDesc,
   selectId,
+  selectPlaceholder,
   selectOptions,
   selectOnChange,
+  selectValue,
   isTextarea,
   textareaPlaceholder,
   textareaMaxlength,
@@ -37,7 +39,6 @@ export const FormField = ({
   tooltipIsVisible,
   isPayment,
   isDate,
-  isCategory
 }) => (
   <Field>
     <Title 
@@ -66,9 +67,10 @@ export const FormField = ({
       <SelectField
         desc={selectDesc}
         id={selectId}
-        isCategory={isCategory}
+        placeholder={selectPlaceholder}
         options={selectOptions}
         onChange={selectOnChange}
+        value={selectValue}
       />
     )}
     {isPayment && (

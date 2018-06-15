@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { media } from "../../../utils/constants/mediaQueries";
+import { media } from "../../../utils/styles/mediaQueries";
 
 export const Field = styled.div`
   display: grid;

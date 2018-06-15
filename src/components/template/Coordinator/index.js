@@ -27,7 +27,7 @@ class Coordinator extends Component {
             selectId="responsible"
             selectOptions={employes}
             selectOnChange={"onChange"}
-            selectDefault={"ja"}
+            selectValue="Walter"
           />
           <FormField 
             titleDesc="EMAIL"

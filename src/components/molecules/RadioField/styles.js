@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { media } from "../../../utils/styles/mediaQueries";
+
 export const Field = styled.div`
   align-items: center;
   display: flex;
@@ -13,4 +15,8 @@ export const Input = styled.input`
 
 export const RadioDescription = styled.span`
   margin-right: 15px;
+  font-size: 1.4rem;
+  @media (${media.tablet}) {
+    font-size: 1.6rem;
+  }
 `;
