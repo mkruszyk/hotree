@@ -4,24 +4,24 @@ import { Textarea } from '../../atoms/Textarea';
 
 import { Field, TextareaDescription, Description } from "./styles";
 
-class TextareaField extends Component {
-  constructor(props) {
-    super(props) 
-    this.state = {
-      character: ''
-    }
-  }
-  render() {
-    return (
-      <Field>
-        <Textarea placeholder={this.props.placeholder} />
-        <TextareaDescription>
-          <Description>{this.props.desc}</Description>
-          <Description>0/140</Description>
-        </TextareaDescription>
-      </Field>
-    );
-  }
-}
-
-export default TextareaField;
+export const TextareaField = ({
+  data,
+  desc,
+  maxLength,
+  onChange,
+  placeholder,
+}) => (
+  <Field>
+    <Textarea 
+      data={data}
+      desc={desc}
+      maxLength={maxLength}
+      onChange={onChange}
+      placeholder={placeholder}
+    />
+    <TextareaDescription>
+      <Description>{desc}</Description>
+      <Description>{data.value.length}/140</Description>
+    </TextareaDescription>
+  </Field>
+);

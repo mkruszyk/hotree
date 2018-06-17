@@ -18,12 +18,11 @@ export const Input = ({
   value,
   isFeeVisible
 }) => {
-  console.log('DEBUG data: ', data);
   const handleOnChange = (e) => {
     e.preventDefault(e);
     const payload = { ...data };
     payload.value = e.target.value;
-    const validatedPayload = validateInputPayload(type, payload);
+    const validatedPayload = validateInputPayload(payload.type, payload);
     onChange(validatedPayload);
   }
   return (

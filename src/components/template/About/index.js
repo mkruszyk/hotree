@@ -43,7 +43,7 @@ class About extends Component {
             isTextarea="true"
             data={description}
             desc="Max length 140 characters"
-            maxlength="140"
+            maxLength="140"
             placeholder="Write about your event, be creative"
             onChange={this.props.onChange}
             isTooltip="true"

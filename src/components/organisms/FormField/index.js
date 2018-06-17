@@ -5,7 +5,7 @@ import { Title } from "../../atoms/Title";
 import { Tooltip } from "../../atoms/Tooltip";
 
 import { SelectField } from "../../molecules/SelectField";
-import TextareaField from "../../molecules/TextareaField";
+import { TextareaField } from "../../molecules/TextareaField";
 
 import { PaymentField } from "../PaymentField";
 import DateField from "../DateField";
@@ -19,7 +19,7 @@ export const FormField = ({
   desc,
   min,
   max,
-  maxlength,
+  maxLength,
   placeholder,
   options,
   onChange,
@@ -50,7 +50,7 @@ export const FormField = ({
       <TextareaField
         data={data}
         desc={desc}
-        maxlength={maxlength}
+        maxLength={maxLength}
         onChange={onChange}
         placeholder={placeholder}
       />
