@@ -1,55 +1,41 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Input } from "../../atoms/Input";
 import { RadioField } from "../../molecules/RadioField";
 
 import { Field, PaidEvent } from "./styles";
 
-class PaymentField extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      paidEvent: false
-    };
-  }
-  switchPayment = () => {
-    this.setState({
-      paidEvent: !this.state.paidEvent
-    });
-  };
-
-  render() {
-    const { paidEvent } = this.state;
-    return (
-      <Field>
-        <RadioField
-          id="free-event"
-          name="freeEvent"
-          checked={!paidEvent}
-          desc="Free event"
-          onChange={this.switchPayment}
-        />
-        <PaidEvent>
+export const PaymentField = ({ data, onChange }) => {
+  const { options, selectedValue, eventFee } = data;
+  return (
+    <Field>
+      {options.map((option, id) => (
+        <PaidEvent key={option.id}>
           <RadioField
-            id="paid-event"
-            name="paidEvent"
-            checked={paidEvent}
-            desc="Paid event"
-            onChange={this.switchPayment}
-          />
-          {paidEvent && (
-            <Input
-              desc="$"
-              id="fee"
-              name="fee"
-              placeholder="Fee"
-              type="number"
+              id={option.id}
+              data={data}
+              name={option.name}
+              checked={option.value === selectedValue}
+              desc={option.desc}
+              onChange={onChange}
+              value={option.value}
             />
-          )}
+            {option.id === 'paidEvent' 
+              ? (
+                  <Input
+                    isFeeVisible={selectedValue}
+                    id={eventFee.id}
+                    name={eventFee.id}
+                    desc="$"
+                    placeholder="Fee"
+                    type={eventFee.type}
+                    value={eventFee.value}
+                  /> 
+                ) 
+              : null
+            }
         </PaidEvent>
-      </Field>
-    );
-  }
-}
-
-export default PaymentField;
+      ))}
+    </Field>
+  );
+};

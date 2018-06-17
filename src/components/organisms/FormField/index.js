@@ -7,7 +7,7 @@ import { Tooltip } from "../../atoms/Tooltip";
 import { SelectField } from "../../molecules/SelectField";
 import TextareaField from "../../molecules/TextareaField";
 
-import PaymentField from "../PaymentField";
+import { PaymentField } from "../PaymentField";
 import DateField from "../DateField";
 
 import { Field } from "./styles";
@@ -15,75 +15,62 @@ import { Field } from "./styles";
 export const FormField = ({
   titleDesc,
   titleMandatory,
+  data,
+  desc,
+  min,
+  max,
+  maxlength,
+  placeholder,
+  options,
+  onChange,
+  value,
   isInput,
-  inputId,
-  inputDesc,
-  inputMin,
-  inputMax,
-  inputName,
-  inputPlaceholder,
-  inputType,
   isSelect,
-  selectDesc,
-  selectId,
-  selectPlaceholder,
-  selectOptions,
-  selectOnChange,
-  selectValue,
   isTextarea,
-  textareaPlaceholder,
-  textareaMaxlength,
-  textareaDesc,
+  isDate,
+  isPayment,
   isTooltip,
   tooltipText,
   tooltipIsVisible,
-  isPayment,
-  isDate,
 }) => (
   <Field>
-    <Title 
-      desc={titleDesc} 
-      mandatory={titleMandatory} 
-    />
+    <Title desc={titleDesc} mandatory={titleMandatory} />
     {isInput && (
       <Input
-        id={inputId}
-        type={inputType}
-        placeholder={inputPlaceholder}
-        name={inputName}
-        min={inputMin}
-        max={inputMax}
-        desc={inputDesc}
+        data={data}
+        desc={desc}
+        type={data.type}
+        placeholder={placeholder}
+        onChange={onChange}
+        min={min}
+        max={max}
       />
     )}
     {isTextarea && (
       <TextareaField
-        maxlength={textareaMaxlength}
-        placeholder={textareaPlaceholder}
-        desc={textareaDesc}
+        data={data}
+        desc={desc}
+        maxlength={maxlength}
+        onChange={onChange}
+        placeholder={placeholder}
       />
     )}
     {isSelect && (
       <SelectField
-        desc={selectDesc}
-        id={selectId}
-        placeholder={selectPlaceholder}
-        options={selectOptions}
-        onChange={selectOnChange}
-        value={selectValue}
+        data={data}
+        desc={desc}
+        placeholder={placeholder}
+        onChange={onChange}
+        options={options}
+        value={value}
       />
     )}
     {isPayment && (
-      <PaymentField />
+      <PaymentField data={data} onChange={onChange} />
     )}
-    {isDate && (
-      <DateField />
+    {isDate && ( 
+      <DateField data={data} onChange={onChange} />
     )}
-    {isTooltip && (
-      <Tooltip 
-        text={tooltipText} 
-        isVisible={tooltipIsVisible} 
-      />
-    )}
+    {isTooltip && <Tooltip text={tooltipText} isVisible={tooltipIsVisible} />}
   </Field>
 );

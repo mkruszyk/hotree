@@ -1,25 +1,37 @@
 import React from "react";
-import { Input, Field, RadioDescription } from "./styles";
 
+import { Field, Radio, RadioDescription } from "./styles";
  
 export const RadioField = ({ 
   id,
   name,
   checked, 
-  desc, 
+  desc,
+  data,
   onChange, 
-  withLeftMargin
-}) => (
+  withLeftMargin,
+  value
+}) => {
+  const handleOnChange = (e) => {
+    const payload = { ...data };
+    payload.selectedValue = e.target.value;
+
+    console.log('DEBUG data: ', data);
+    console.log('DEBUG payload: ', payload);
+    onChange(payload);
+  }
+  return (
   <Field withLeftMargin={withLeftMargin} >
-    <Input 
+    <Radio 
       id={id}
       name={name}
       type="radio"
       checked={checked}
-      onChange={onChange}
+      onChange={handleOnChange}
+      value={value}
     />
     <RadioDescription>
       {desc}
     </RadioDescription>
   </Field>
-);
+)};

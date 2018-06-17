@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { FormField } from "../../organisms/FormField";
-import DateField from "../../organisms/DateField";
 
 import { Form, Header, InputContainer } from "./styles";
 
@@ -12,6 +11,10 @@ class When extends Component {
     this.state = {};
   }
   render() {
+    const {
+      startsOn,
+      duration
+    } = this.props.data;
     return (
       <Form>
         <Header>
@@ -19,21 +22,22 @@ class When extends Component {
         </Header>
         <InputContainer>
           <FormField
-            titleDesc="DURATION"
+            titleDesc="STARTS ON"
             titleMandatory="true"
             isDate="true"
+            data={startsOn}
+            onChange={this.props.onChange}
             isTooltip="true"
             tooltipText="Date and time cannot be empty"
-            tooltipIsVisible="true"
+            tooltipIsVisible={startsOn.isValid}
           />
           <FormField
             titleDesc="DURATION"
             isInput="true"
-            inputDesc="hour"
-            inputId="duration"
-            inputName="duration"
-            inputPlaceholder="Number"
-            inputType="number"
+            data={duration}
+            onChange={this.props.onChange}
+            desc="hour"
+            placeholder="Number"
           />
         </InputContainer>
       </Form>

@@ -12,9 +12,17 @@ export const Field = styled.div`
 export const Container = styled.div`
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   grid-area: field;
   @media (${media.tablet}) {
     margin: 12px 0;
+  }
+`;
+
+export const RadioContainer = styled.div`
+  display: flex;
+  @media (${media.smallMobile}) {
+    margin: 14px 0;
   }
 `;
 

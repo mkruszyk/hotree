@@ -9,7 +9,7 @@ export const Field = styled.div`
   margin-left: ${props => props.withLeftMargin ? '14px' : '0'}
 `;
 
-export const Input = styled.input`
+export const Radio = styled.input`
   margin-right: 10px;
 `;
 

@@ -5,6 +5,7 @@ import { media } from "../../../utils/styles/mediaQueries";
 
 export const InputContainer = styled.div`
   grid-area: field;
+  visibility: ${props => props.isFeeVisible === 'freeEvent' ? 'hidden' : 'visible'};
 `;
 
 export const InputTemplate = styled.input`

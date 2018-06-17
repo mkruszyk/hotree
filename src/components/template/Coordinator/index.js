@@ -5,15 +5,14 @@ import { FormField } from '../../organisms/FormField';
 
 import employes from '../../../data/employes.json';
 
-import { Form, Header, InputContainer, InputBlock } from "./styles";
+import { Form, Header, InputContainer } from "./styles";
 
 class Coordinator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
   render() {
+    const {
+      responsible,
+      email
+    } = this.props.data
     return (
       <Form>
         <Header>
@@ -24,21 +23,20 @@ class Coordinator extends Component {
             titleDesc="RESPONSIBLE"
             titleMandatory="true"
             isSelect="true"
-            selectId="responsible"
-            selectOptions={employes}
-            selectOnChange={"onChange"}
-            selectValue="Walter"
+            data={responsible}
+            options={employes}
+            onChange={this.props.onChange}
+            value="Walter"
           />
           <FormField 
             titleDesc="EMAIL"
             isInput="true"
-            inputId="email"
-            inputType="email"
-            inputPlaceholder="Email"
-            inputName="email"
+            data={email}
+            placeholder="Email"
+            onChange={this.props.onChange}
             isTooltip="true"
             tooltipText="Invalid email format"
-            tooltipIsVisible="true"
+            tooltipIsVisible={email.isValid}
           />
         </InputContainer>
       </Form>

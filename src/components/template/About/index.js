@@ -13,6 +13,13 @@ class About extends Component {
     }
   }
   render() {
+    const { 
+      title,
+      description,
+      category,
+      payment,
+      reward,
+    } = this.props.data;
     return (
       <Form>
         <Header>
@@ -23,48 +30,50 @@ class About extends Component {
             titleDesc="TITLE"
             titleMandatory="true"
             isInput="true"
-            inputId="title"
-            inputType="text"
-            inputPlaceholder="Make it short and clear"
-            inputName="title"
-            isTooltip="true"
+            data={title}
+            onChange={this.props.onChange}
+            placeholder="Make it short and clear"
+            isTooltip={title.isValid}
             tooltipText="Title cannot be empty"
-            tooltipIsVisible="true"
+            tooltipIsVisible={title.isValid}
           />
           <FormField 
             titleDesc="DESCRIPTION"
             titleMandatory="true"
             isTextarea="true"
-            textareaMaxlength="140"
-            textareaPlaceholder="Write about your event, be creative"
-            textareaDesc="Max length 140 characters"
+            data={description}
+            desc="Max length 140 characters"
+            maxlength="140"
+            placeholder="Write about your event, be creative"
+            onChange={this.props.onChange}
             isTooltip="true"
             tooltipText="Description cannot be empty"
-            tooltipIsVisible="true"
+            tooltipIsVisible={description.isValid}
           />
           <FormField 
             titleDesc="CATEGORY"
             isSelect="true"
-            selectId="category"
-            selectDesc="Describes topic and people who should be interest in this event"
-            selectOptions={categories}
-            selectOnChange={"onChange"}
-            selectPlaceholder="Select category (skills, interests, locations)"
+            data={category}
+            desc="Describes topic and people who should be interest in this event"
+            options={categories}
+            onChange={this.props.onChange}
+            placeholder="Select category (skills, interests, locations)"
           />
           <FormField 
             titleDesc="PAYMENT"
             isPayment="true"
+            data={payment}
+            onChange={this.props.onChange}
           />
           <FormField 
             titleDesc="REWARD"
             isInput="true"
-            inputDesc="reward points for attendance"
-            inputId="reward"
-            inputMin="0"
-            inputMax="10"
-            inputName="reward"
-            inputPlaceholder="Number"
-            inputType="number"
+            desc="reward points for attendance"
+            data={reward}
+            min="0"
+            max="10"
+            placeholder="Number"
+            onChange={this.props.onChange}
           />
         </InputContainer>
       </Form>

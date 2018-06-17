@@ -1,8 +1,10 @@
 import React from "react";
 import { InputContainer, InputTemplate, Label } from "./styles";
+import { validateInputPayload } from '../../../validation/validateInputPayload';
 
 export const Input = ({
   checked,
+  data,
   id,
   desc,
   min,
@@ -13,8 +15,19 @@ export const Input = ({
   placeholder,
   type,
   required,
-}) => (
-  <InputContainer>
+  value,
+  isFeeVisible
+}) => {
+  console.log('DEBUG data: ', data);
+  const handleOnChange = (e) => {
+    e.preventDefault(e);
+    const payload = { ...data };
+    payload.value = e.target.value;
+    const validatedPayload = validateInputPayload(type, payload);
+    onChange(validatedPayload);
+  }
+  return (
+  <InputContainer isFeeVisible={isFeeVisible}>
     <InputTemplate
       autocomplete="off"
       checked={checked}
@@ -23,11 +36,13 @@ export const Input = ({
       max={max}
       name={name}
       onBlur={onBlur}
-      onChange={() => onChange()}
+      onChange={handleOnChange}
       placeholder={placeholder}
       type={type}
       required={required}
+      value={value}
     />
     {desc && (<Label name={name}>{desc}</Label>)}
   </InputContainer>
-);
+  );
+};
