@@ -26,7 +26,7 @@ export const RadioContainer = styled.div`
   }
 `;
 
-export const Input = styled.input`
+export const DateTimeInput = styled.input`
 `;
 
 export const Label = styled.label`

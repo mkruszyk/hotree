@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Field, Radio, RadioDescription } from "./styles";
+import { formatTime } from "../../../utils/functions/formatTime";
  
 export const RadioField = ({ 
   id,
@@ -13,9 +14,16 @@ export const RadioField = ({
   value
 }) => {
   const handleOnChange = (e) => {
-    const payload = { ...data };
+    let payload = { ...data };
+    console.log('DEBUG payload: ', payload);
     payload.selectedValue = e.target.value;
-    onChange(payload);
+    if (payload.id === 'startsOn') {
+      const formatted = formatTime(payload);
+      formatted.time.am_pm = e.target.value;
+      onChange(formatted);
+    } else {
+      onChange(payload);
+    }
   }
   return (
   <Field withLeftMargin={withLeftMargin} >

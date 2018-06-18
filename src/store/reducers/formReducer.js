@@ -60,6 +60,7 @@ const initialState = {
   },
   startsOn: {
     id: 'startsOn',
+    type: 'date',
     selectedValue: 'am',
     options: [
       {
@@ -76,11 +77,14 @@ const initialState = {
     date: {
       id: 'date',
       type: 'date',
+      value: '',
       isValid: true,
     },
     time: {
       id: 'hour',
       type: 'time',
+      am_pm: '',
+      value: '',
       isValid: true,
     },
   },

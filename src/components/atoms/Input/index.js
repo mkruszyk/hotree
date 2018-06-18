@@ -17,6 +17,7 @@ export const Input = ({
   required,
 }) => {
   const handleOnChange = (e) => {
+    console.log('DEBUG : ', );
     e.preventDefault(e);
     const payload = { ...data };
     payload.value = e.target.value;
