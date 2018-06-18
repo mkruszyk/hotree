@@ -13,6 +13,7 @@ class Coordinator extends Component {
       responsible,
       email
     } = this.props.data
+
     return (
       <Form>
         <Header>
@@ -24,15 +25,17 @@ class Coordinator extends Component {
             titleMandatory="true"
             isSelect="true"
             data={responsible}
+            defaultValue={responsible.default}
+            defaultInfo={'Me - '}
+            email={email}
             options={employes}
             onChange={this.props.onChange}
-            value="Walter"
           />
           <FormField 
             titleDesc="EMAIL"
             isInput="true"
             data={email}
-            placeholder="Email"
+            placeholder={"Email"}
             onChange={this.props.onChange}
             isTooltip="true"
             tooltipText="Invalid email format"

@@ -16,6 +16,9 @@ export const FormField = ({
   titleDesc,
   titleMandatory,
   data,
+  defaultInfo,
+  defaultValue,
+  email,
   desc,
   min,
   max,
@@ -44,6 +47,7 @@ export const FormField = ({
         onChange={onChange}
         min={min}
         max={max}
+        value={value}
       />
     )}
     {isTextarea && (
@@ -58,6 +62,9 @@ export const FormField = ({
     {isSelect && (
       <SelectField
         data={data}
+        defaultInfo={defaultInfo}
+        defaultValue={defaultValue}
+        email={email}
         desc={desc}
         placeholder={placeholder}
         onChange={onChange}

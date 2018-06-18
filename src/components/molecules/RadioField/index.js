@@ -15,9 +15,6 @@ export const RadioField = ({
   const handleOnChange = (e) => {
     const payload = { ...data };
     payload.selectedValue = e.target.value;
-
-    console.log('DEBUG data: ', data);
-    console.log('DEBUG payload: ', payload);
     onChange(payload);
   }
   return (

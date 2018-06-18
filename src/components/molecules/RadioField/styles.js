@@ -5,7 +5,7 @@ import { media } from "../../../utils/styles/mediaQueries";
 export const Field = styled.div`
   align-items: center;
   display: flex;
-  height: 40px;
+  height: 45px;
   margin-left: ${props => props.withLeftMargin ? '14px' : '0'}
 `;
 

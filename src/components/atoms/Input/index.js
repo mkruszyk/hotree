@@ -15,8 +15,6 @@ export const Input = ({
   placeholder,
   type,
   required,
-  value,
-  isFeeVisible
 }) => {
   const handleOnChange = (e) => {
     e.preventDefault(e);
@@ -26,7 +24,7 @@ export const Input = ({
     onChange(validatedPayload);
   }
   return (
-  <InputContainer isFeeVisible={isFeeVisible}>
+  <InputContainer>
     <InputTemplate
       autocomplete="off"
       checked={checked}
@@ -39,7 +37,7 @@ export const Input = ({
       placeholder={placeholder}
       type={type}
       required={required}
-      value={value}
+      value={data.value}
     />
     {desc && (<Label name={name}>{desc}</Label>)}
   </InputContainer>

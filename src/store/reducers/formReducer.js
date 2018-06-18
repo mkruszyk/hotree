@@ -16,7 +16,6 @@ const initialState = {
   category: {
     id: 'category',
     type: 'select',
-    isValid: true,
     value: '',
   },
   payment: {
@@ -44,11 +43,11 @@ const initialState = {
   reward: {
     id: 'reward',
     type: 'number',
-    isValid: true,
     value: '',
   },
   responsible: {
     id: 'responsible',
+    default: 3,
     type: 'select',
     isValid: true,
     value: '',
@@ -57,7 +56,7 @@ const initialState = {
     id: 'email',
     type: 'email',
     isValid: true,
-    value: '',
+    value: 'walter.nelson@hussa.rs',
   },
   startsOn: {
     id: 'startsOn',
@@ -88,7 +87,6 @@ const initialState = {
   duration: {
     id: 'duration',
     type: 'number',
-    isValid: true,
     value: '',
   },
 };
