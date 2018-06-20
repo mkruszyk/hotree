@@ -1,12 +1,13 @@
 export const colors = {
-  darkBlue: '#1B376C',
   blue: '#305595',
-  lightBlue: '#8AA0BF',
-  orange: '#FD8C25',
+  darkBlue: '#1B376C',
+  darkOrange: '#CC701C',
   formBackground: '#FFF',
   greenText: '#70BE75',
   greenSuccessInfo: '#EFFBF2',
   greyText: '#F7F7F7',
+  inputColor: "#2D2D2D",
+  lightBlue: '#8AA0BF',
+  orange: '#FD8C25',
   warningRed: '#FFADAE',
-  inputColor: "#2D2D2D"
 };

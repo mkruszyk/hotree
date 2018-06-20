@@ -1,6 +1,6 @@
 import { injectGlobal } from "styled-components";
 
-import { media } from '../utils/styles/mediaQueries';
+import { media } from './mediaQueries';
 
 injectGlobal`
   html {
@@ -11,16 +11,15 @@ injectGlobal`
     box-sizing: border-box; 
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
     font-family: 'Lato', sans-serif;
   }
 
   input, select, textarea {
     box-sizing: border-box;
-    font-weight: 300;
+    font-family: 'Lato', sans-serif;
     outline-width: thin;
     padding: 10px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     border-radius: 3px;
     border: 1px solid #a3a3a3;
     color: #2D2D2D;

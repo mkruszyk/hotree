@@ -1,46 +1,30 @@
 import React from "react";
-import { InputContainer, InputTemplate, Label } from "./styles";
-import { validateInputPayload } from '../../../validation/validateInputPayload';
 
-export const Input = ({
-  checked,
-  data,
-  id,
-  desc,
-  min,
-  max,
-  name,
-  onBlur,
-  onChange,
-  placeholder,
-  type,
-  required,
-}) => {
+import { validate } from '../../../utils/validator';
+
+import { Container, InputWrapper, Label } from "./styles";
+
+export const Input = (props) => {
   const handleOnChange = (e) => {
-    console.log('DEBUG : ', );
     e.preventDefault(e);
-    const payload = { ...data };
-    payload.value = e.target.value;
-    const validatedPayload = validateInputPayload(payload.type, payload);
-    onChange(validatedPayload);
+    const { value } = e.target;
+    const payload = { ...props.data };
+    payload.value = value;
+    payload.isValid = validate(payload.id, value);
+    props.onChange(payload);
   }
   return (
-  <InputContainer>
-    <InputTemplate
+  <Container error={props.error}>
+    <InputWrapper
       autocomplete="off"
-      checked={checked}
-      id={id}
-      min={min}
-      max={max}
-      name={name}
-      onBlur={onBlur}
+      id={props.data.id}
+      name={props.data.name}
       onChange={handleOnChange}
-      placeholder={placeholder}
-      type={type}
-      required={required}
-      value={data.value}
+      placeholder={props.placeholder}
+      type="text"
+      value={props.data.value}
     />
-    {desc && (<Label name={name}>{desc}</Label>)}
-  </InputContainer>
+    {props.desc && (<Label>{props.desc}</Label>)}
+  </Container>
   );
 };

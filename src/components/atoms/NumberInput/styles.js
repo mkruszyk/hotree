@@ -7,8 +7,11 @@ export const Container = styled.div`
   grid-area: field;
 `;
 
-export const InputWrapper = styled.input`
-  width: ${inputWidth['text']};
+export const Input = styled.input`
+  width: ${inputWidth['number']};
+  @media (${media.tablet}) {
+    width: ${inputWidth.numberMobile};
+  }
 `;
 
 export const Label = styled.p`

@@ -1,44 +1,60 @@
 import React from "react";
 
-import { Input } from "../../atoms/Input";
-import { RadioField } from "../../molecules/RadioField";
+import { validate } from '../../../utils/validator';
+
+import { NumberInput } from "../../atoms/NumberInput";
+import { RadioInput } from "../../atoms/RadioInput";
 
 import { Field, PaidEvent } from "./styles";
 
-export const PaymentField = ({ data, onChange }) => {
-  const { options, selectedValue, eventFee } = data;
-  const renderConditionally = option => {
-    if (option === "paidEvent") {
-      return (
-        selectedValue === "paidEvent" && (
-          <Input
-            id={eventFee.id}
-            name={eventFee.id}
-            data={eventFee}
-            desc="$"
-            placeholder="Fee"
-            type={eventFee.type}
-          />
-        )
-      );
-    } else {
-      return null;
+export const PaymentField = ({ 
+  additionalData, 
+  data, 
+  onChange 
+}) => {
+  const { options, selectedValue } = data;
+  const handleOnChange = (e) => {
+    let payload = { ...data };
+    payload.selectedValue = e.target.value
+    onChange(payload);
+    if (payload.selectedValue === 'freeEvent') {
+      let event_fee = { ...additionalData }; 
+      event_fee.isValid = validate(payload.selectedValue, additionalData.value);
+      onChange(event_fee);
     }
+  }
+
+  const renderEventFee = (option) => {
+    return (
+      option === "paidEvent" && selectedValue === "paidEvent" && (
+        <NumberInput
+          id={additionalData.id}
+          name={additionalData.id}
+          data={additionalData}
+          additionalData={data.selectedValue}
+          desc="$"
+          placeholder="Fee"
+          onChange={onChange}
+          type={additionalData.type}
+          value={additionalData.value}
+        />
+      )
+    );
   };
   return (
     <Field>
-      {options.map((option, id) => (
+      {options.map(option => (
         <PaidEvent key={option.id}>
-          <RadioField
+          <RadioInput
+            key={option.id}
             id={option.id}
-            data={data}
-            name={option.name}
+            name={option.id}
             checked={option.value === selectedValue}
             desc={option.desc}
-            onChange={onChange}
+            onChange={handleOnChange}
             value={option.value}
           />
-          {renderConditionally(option.id)}
+          {renderEventFee(option.id)}
         </PaidEvent>
       ))}
     </Field>

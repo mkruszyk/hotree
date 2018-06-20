@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { media } from '../../../utils/styles/mediaQueries';
 
-export const TextBox = styled.textarea`
+export const TextareaWrapper = styled.textarea`
   height: 100px;
   width: 100%;
   resize: none;

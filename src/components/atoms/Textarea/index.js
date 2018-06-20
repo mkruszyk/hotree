@@ -1,27 +1,22 @@
 import React from "react";
 
-import { validateInputPayload } from '../../../validation/validateInputPayload';
+import { validate } from '../../../utils/validator';
 
-import { TextBox } from "./styles";
+import { TextareaWrapper } from "./styles";
 
-export const Textarea = ({ 
-  data,
-  maxLength,
-  onChange,
-  placeholder,
-}) => {
+export const Textarea = (props) => {
   const handleOnChange = (e) => {
     e.preventDefault();
-    const payload = { ...data };
+    const payload = { ...props.data };
     payload.value = e.target.value;
-    const validatedPayload = validateInputPayload(payload.type, payload);
-    onChange(validatedPayload);
+    payload.isValid = validate(payload.id, payload.value);
+    props.onChange(payload);
   }
   return (
-    <TextBox
+    <TextareaWrapper
       onChange={handleOnChange}
-      maxLength={maxLength}
-      placeholder={placeholder} 
+      maxLength={props.maxLength}
+      placeholder={props.placeholder} 
     />
   )
 };

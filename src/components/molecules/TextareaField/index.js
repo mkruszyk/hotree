@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Textarea } from '../../atoms/Textarea';
 
@@ -7,11 +7,12 @@ import { Field, TextareaDescription, Description } from "./styles";
 export const TextareaField = ({
   data,
   desc,
+  error,
   maxLength,
   onChange,
   placeholder,
 }) => (
-  <Field>
+  <Field error={error}>
     <Textarea 
       data={data}
       desc={desc}
@@ -21,7 +22,7 @@ export const TextareaField = ({
     />
     <TextareaDescription>
       <Description>{desc}</Description>
-      <Description>{data.value.length}/140</Description>
+      <Description>{data.value.length}/{maxLength}</Description>
     </TextareaDescription>
   </Field>
 );

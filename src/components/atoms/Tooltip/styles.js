@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 import { media } from "../../../utils/styles/mediaQueries";
 
-export const TooltipContainer = styled.div`
-  visibility: ${props => (props.isVisible ? "visible" : "hidden")};
-  position: relative;
+export const Container = styled.div`
   display: flex;
   justify-content: center;
+  height: 43px;
   grid-area: tooltip;
+  position: relative;
   @media (${media.mobile}) {
     margin-top: 8px;
   }
@@ -19,13 +19,14 @@ export const TooltipWrapper = styled.div`
   max-height: 38px
 `;
 
-export const TooltipText = styled.span`
+export const Text = styled.span`
+  align-self: center;
   background-color: ${props => props.theme.warningRed};
   border-radius: 3px;
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   text-align: center;
-  padding: 5px 0px;
+  padding: 8px 0px;
   position: relative;
   width: 125px;
   visibility: visible;
@@ -44,7 +45,7 @@ export const TooltipText = styled.span`
     transform: rotate(90deg);
     @media (${media.mobile}) {
       transform: rotate(180deg);
-      top: -38%;
+      top: -30%;
       left: calc(50% - 10px);
     }
   }

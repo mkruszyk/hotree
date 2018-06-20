@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Input } from "../../atoms/Input";
+import { NumberInput } from "../../atoms/NumberInput";
 import { Title } from "../../atoms/Title";
 import { Tooltip } from "../../atoms/Tooltip";
 
@@ -8,76 +9,43 @@ import { SelectField } from "../../molecules/SelectField";
 import { TextareaField } from "../../molecules/TextareaField";
 
 import { PaymentField } from "../PaymentField";
-import DateField from "../DateField";
+import { DateField } from "../DateField";
 
 import { Field } from "./styles";
 
 export const FormField = ({
   titleDesc,
   titleMandatory,
+  type,
   data,
-  defaultInfo,
-  defaultValue,
-  email,
-  desc,
-  min,
-  max,
-  maxLength,
-  placeholder,
-  options,
-  onChange,
-  value,
-  isInput,
-  isSelect,
-  isTextarea,
-  isDate,
-  isPayment,
-  isTooltip,
-  tooltipText,
-  tooltipIsVisible,
+  isError,
+  errorInfo,
+  ...other
 }) => (
   <Field>
     <Title desc={titleDesc} mandatory={titleMandatory} />
-    {isInput && (
-      <Input
-        data={data}
-        desc={desc}
-        type={data.type}
-        placeholder={placeholder}
-        onChange={onChange}
-        min={min}
-        max={max}
-        value={value}
+    {type === "input" && ( 
+      <Input data={data} error={isError} {...other} />
+    )}
+    {type === "numberInput" && ( 
+      <NumberInput data={data} error={isError} {...other} />
+    )}
+    {type === "textarea" && (
+      <TextareaField data={data} error={isError} {...other} />
+    )}
+    {type === "select" && ( 
+      <SelectField data={data} {...other} />
+    )}
+    {type === "payment" && (
+      <PaymentField 
+        data={data} 
+        error={isError} 
+        {...other} 
       />
     )}
-    {isTextarea && (
-      <TextareaField
-        data={data}
-        desc={desc}
-        maxLength={maxLength}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
+    {type === "date" && (
+      <DateField data={data} error={isError} {...other} />
     )}
-    {isSelect && (
-      <SelectField
-        data={data}
-        defaultInfo={defaultInfo}
-        defaultValue={defaultValue}
-        email={email}
-        desc={desc}
-        placeholder={placeholder}
-        onChange={onChange}
-        options={options}
-        value={value}
-      />
-    )}
-    {isPayment && (
-      <PaymentField data={data} onChange={onChange} />
-    )}
-    {isDate && ( 
-      <DateField data={data} onChange={onChange} />
-    )}
-    {isTooltip && <Tooltip text={tooltipText} isVisible={tooltipIsVisible} />}
+    {!isError && <Tooltip isVisible={isError} text={errorInfo} />}
   </Field>
 );
