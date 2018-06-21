@@ -95,6 +95,7 @@ About.propTypes = {
   eventFee: requiredDataPropType,
   reward: dataPropType,
   onChange: PropTypes.func.isRequired,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 
 export default connect(mapStateToProps, null)(About);

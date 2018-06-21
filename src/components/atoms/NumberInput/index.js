@@ -34,6 +34,7 @@ NumberInput.propTypes = {
     requiredDataPropType,
   ]),
   desc: PropTypes.string,
+  error: PropTypes.bool,
   id: PropTypes.string,
   name: PropTypes.string,
   min: PropTypes.number,

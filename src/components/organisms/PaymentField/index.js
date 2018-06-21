@@ -62,6 +62,8 @@ const mapDispatchToProps = {
 PaymentField.propTypes = {
   additionalData: requiredDataPropType,
   data: radioFieldPropType,
+  error: PropTypes.bool,
+  setErrors: PropTypes.func,
   onChange: PropTypes.func,
 };
 

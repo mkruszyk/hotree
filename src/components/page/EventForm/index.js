@@ -10,8 +10,15 @@ import Coordinator from '../../template/Coordinator';
 import When from '../../template/When';
 import Button from '../../atoms/Button';
 import Container from './styles';
+import Message from '../../atoms/Message';
 
 class EventForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      success: false,
+    };
+  }
   getDate = () => {
     const { day, time } = this.props.form;
     return `${day.value}T${time.value}`;
@@ -36,6 +43,9 @@ class EventForm extends Component {
     if (isValid) {
       console.log('newEvent: ', newEvent); // eslint-disable-line
       this.props.publishEvent(newEvent);
+      this.setState({
+        success: true,
+      });
     } else {
       console.log('errors: ', errors); // eslint-disable-line
       this.isFormValid();
@@ -79,26 +89,39 @@ class EventForm extends Component {
       this.props.setData(data.id, 'value', value);
     }
   }
+  renderForm = () => (
+    <Container>
+      <About
+        onChange={this.handleOnChange}
+        error={this.props.errors}
+      />
+      <Coordinator
+        onChange={this.handleOnChange}
+        error={this.props.errors}
+      />
+      <When
+        onChange={this.handleOnChange}
+        error={this.props.errors}
+      />
+      <Button
+        title="Publish event"
+        onClick={this.publishEvent}
+      />
+    </Container>
+  )
+  renderSuccess = () => (
+    <Container>
+      <Message
+        title="Success"
+        info="Event has been created."
+      />
+    </Container>
+  )
   render() {
     return (
-      <Container>
-        <About
-          onChange={this.handleOnChange}
-          error={this.props.errors}
-        />
-        <Coordinator
-          onChange={this.handleOnChange}
-          error={this.props.errors}
-        />
-        <When
-          onChange={this.handleOnChange}
-          error={this.props.errors}
-        />
-        <Button
-          title="Publish event"
-          onClick={this.publishEvent}
-        />
-      </Container>
+      <div>
+        { this.state.success ? this.renderSuccess() : this.renderForm() }
+      </div>
     );
   }
 }

@@ -50,7 +50,7 @@ When.propTypes = {
   date: dateTimeFieldPropType,
   duration: dataPropType,
   onChange: PropTypes.func.isRequired,
-  error: PropTypes.object, // eslint-disable-line
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 
 export default connect(mapStateToProps, null)(When);

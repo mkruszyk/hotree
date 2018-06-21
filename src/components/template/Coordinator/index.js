@@ -49,7 +49,7 @@ const mapStateToProps = state => ({
 
 Coordinator.propTypes = {
   responsible: dataPropType,
-  error: PropTypes.object, // eslint-disable-line
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   email: requiredDataPropType,
   onChange: PropTypes.func.isRequired,
 };

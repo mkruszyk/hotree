@@ -22,6 +22,7 @@ const Textarea = (props) => {
 
 Textarea.propTypes = {
   data: requiredDataPropType,
+  error: PropTypes.bool,
   maxLength: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,

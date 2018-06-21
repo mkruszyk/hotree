@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { dateTimeFieldPropType } from '../../../utils/constants';
+import { dateTimeFieldPropType, dataPropType } from '../../../utils/constants';
 import { setData } from '../../../store/actions/formActions';
 
 import formatTime from '../../../utils/formatTime';
@@ -24,7 +24,7 @@ const DateField = (props) => {
   };
   const handleTime = (e) => {
     e.preventDefault();
-    const formatted = formatTime(props.data.selected, e.target.value);
+    const formatted = formatTime(props.date.selected, e.target.value);
     props.onChange(time, formatted);
     handleDateAndTime();
   };
@@ -94,7 +94,10 @@ const mapDispatchToProps = {
 };
 
 DateField.propTypes = {
-  data: dateTimeFieldPropType,
+  date: dateTimeFieldPropType,
+  day: dataPropType,
+  time: dataPropType,
+  error: PropTypes.bool,
   onChange: PropTypes.func,
   setData: PropTypes.func,
 };

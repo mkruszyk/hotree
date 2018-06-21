@@ -30,6 +30,7 @@ const Input = (props) => {
 Input.propTypes = {
   data: requiredDataPropType,
   desc: PropTypes.string,
+  error: PropTypes.bool,
   id: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,

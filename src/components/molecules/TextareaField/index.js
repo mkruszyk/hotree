@@ -32,6 +32,7 @@ const TextareaField = ({
 
 TextareaField.propTypes = {
   data: requiredDataPropType,
+  error: PropTypes.bool,
   desc: PropTypes.string,
   maxLength: PropTypes.string,
   onChange: PropTypes.func.isRequired,
