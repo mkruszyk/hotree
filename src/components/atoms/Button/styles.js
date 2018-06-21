@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-import { colors } from '../../../utils/styles/colors';
-
-export const ButtonPrototype = styled.button`
+const ButtonPrototype = styled.button`
   width: 160px;
   height: 50px;
-  background-color: ${colors.orange};
+  background-color: ${props => props.theme.orange};
   border: 0;
   border-radius: 2px;
   color: white;
@@ -14,6 +12,8 @@ export const ButtonPrototype = styled.button`
   font-weight: 300;
   margin: 10px auto;
   &:hover {
-    background-color: ${colors.darkOrange};
+    background-color: ${props => props.theme.darkOrange};
   }
 `;
+
+export default ButtonPrototype;

@@ -1,11 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container, TooltipWrapper, Text } from './styles';
 
-export const Tooltip = ({ text }) => (
+const Tooltip = ({ text }) => (
   <Container>
     <TooltipWrapper>
       <Text>{text}</Text>
     </TooltipWrapper>
   </Container>
 );
+
+Tooltip.propTypes = {
+  text: PropTypes.string,
+};
+
+export default Tooltip;

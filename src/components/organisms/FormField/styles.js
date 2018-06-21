@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import { media } from "../../../utils/styles/mediaQueries";
+import { media } from '../../../utils/styles/constants';
 
+/* eslint import/prefer-default-export: 0 */
 export const Field = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr 135px;

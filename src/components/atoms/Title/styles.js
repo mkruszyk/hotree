@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-import { media } from "../../../utils/styles/mediaQueries";
+import { media } from '../../../utils/styles/constants';
 
 export const FieldTitle = styled.div`
-  color: ${props => props.theme.lightBlue};
+  color: ${props => (props.error ? props.theme.lightBlue : props.theme.warningRed)};
   text-transform: uppercase;
   width: 150px;
   margin-top: 8px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 300;
   max-width: 135px;
   grid-area: title;

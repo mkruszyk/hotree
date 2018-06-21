@@ -1,7 +1,8 @@
-import { injectGlobal } from "styled-components";
+import { injectGlobal } from 'styled-components';
 
-import { media } from './mediaQueries';
+import { media } from './constants';
 
+/* eslint no-unused-expressions: 0 */
 injectGlobal`
   html {
     font-size: 10px;
@@ -19,7 +20,8 @@ injectGlobal`
     font-family: 'Lato', sans-serif;
     outline-width: thin;
     padding: 10px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    font-weight: 300;
     border-radius: 3px;
     border: 1px solid #a3a3a3;
     color: #2D2D2D;

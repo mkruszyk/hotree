@@ -1,14 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { inputWidth } from "../../../utils/styles/inputWidth";
-import { media } from "../../../utils/styles/mediaQueries";
+import { inputWidth, media } from '../../../utils/styles/constants';
 
 export const Container = styled.div`
   grid-area: field;
 `;
 
 export const InputWrapper = styled.input`
-  width: ${inputWidth['text']};
+  width: ${inputWidth.text};
+  border-color: ${props => (props.error ? '' : props.theme.warningRed)};
+  outline-color: ${props => (props.error ? '' : props.theme.warningRed)};
 `;
 
 export const Label = styled.p`

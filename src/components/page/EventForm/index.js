@@ -1,99 +1,100 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setData, setErrors, publishEvent } from '../../../store/actions/formActions';
+import { setData, publishEvent } from '../../../store/actions/formActions';
+import { setErrors } from '../../../store/actions/errorActions';
 import { validate, validateEvent } from '../../../utils/validator';
-import { About } from '../../template/About';
-import { Coordinator } from '../../template/Coordinator';
-import { When } from '../../template/When';
-import { Button } from '../../atoms/Button';
-import { Container } from './styles';
+import About from '../../template/About';
+import Coordinator from '../../template/Coordinator';
+import When from '../../template/When';
+import Button from '../../atoms/Button';
+import Container from './styles';
 
 class EventForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      errors: {}
-    }
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({ errors: this.props.errors })
-    }
-  }
   getDate = () => {
-    const { date } = this.props.form;
-    return `${date.day.value}T${date.time.value}`;
-  }
+    const { day, time } = this.props.form;
+    return `${day.value}T${time.value}`;
+  };
   publishEvent = () => {
     const { form } = this.props;
     const newEvent = {
       title: form.title.value,
       description: form.description.value,
       category_id: form.category.value.id,
-      paid_event: form.paid_event.selectedValue === 'paidEvent',
-      event_fee: Number(form.event_fee.value),
+      paid_event: form.paidEvent.selected === 'paidEvent',
+      event_fee: Number(form.eventFee.value),
       reward: Number(form.reward.value),
       duration: Number(form.duration.value),
       date: this.getDate(),
       coordinator: {
         email: form.email.value,
-        id: form.responsible.value.id
-      }
-    }
-    
+        id: form.responsible.value.id,
+      },
+    };
     const { isValid, errors } = validateEvent(newEvent);
     if (isValid) {
-      console.log('newEvent: ', newEvent);
+      console.log('newEvent: ', newEvent); // eslint-disable-line
       this.props.publishEvent(newEvent);
     } else {
-      console.log('errors: ', errors);
+      console.log('errors: ', errors); // eslint-disable-line
       this.isFormValid();
     }
   };
-
   isFormValid = () => {
     const { form } = this.props;
     this.props.setErrors(
-      'title', 
-      validate('title', form.title.value)
+      'title',
+      validate('title', form.title.value),
     );
     this.props.setErrors(
-      'description', 
-      validate('description', form.description.value)
+      'description',
+      validate('description', form.description.value),
     );
     this.props.setErrors(
-      form.paid_event.selectedValue,
-      validate(form.paid_event.selectedValue, form.event_fee.value)
+      'paidEvent',
+      validate(form.paidEvent.selected, form.eventFee.value),
     );
     this.props.setErrors(
       'email',
-      validate('email', form.email.value)
+      validate('email', form.email.value),
     );
     this.props.setErrors(
       'date',
-      validate('date', this.getDate())
+      validate('date', this.getDate()),
     );
+  };
+  handleOnChange = (data, value) => {
+    if (data.type === 'radio') {
+      this.props.setData(data.id, 'selected', value);
+    } else {
+      if (data.toValidate === true) {
+        const validatedValue = validate(data.id, value);
+        this.props.setErrors(data.id, validatedValue);
+      }
+      if (data.id === 'eventFee') {
+        const validatedValue = validate(this.props.form.paidEvent.selected, value);
+        this.props.setErrors(data.id, validatedValue);
+      }
+      this.props.setData(data.id, 'value', value);
+    }
   }
   render() {
     return (
       <Container>
-        <About 
-          onChange={this.props.setData}
-          data={this.props.form}
-          errors={this.state.errors}
+        <About
+          onChange={this.handleOnChange}
+          error={this.props.errors}
         />
-        <Coordinator 
-          onChange={this.props.setData}
-          data={this.props.form}
-          errors={this.state.errors}
+        <Coordinator
+          onChange={this.handleOnChange}
+          error={this.props.errors}
         />
-        <When 
-          onChange={this.props.setData}
-          data={this.props.form}
-          errors={this.state.errors}
+        <When
+          onChange={this.handleOnChange}
+          error={this.props.errors}
         />
-        <Button 
+        <Button
           title="Publish event"
           onClick={this.publishEvent}
         />
@@ -102,15 +103,23 @@ class EventForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-    form: state.form,
-    errors: state.errors
+const mapStateToProps = state => ({
+  form: state.form,
+  errors: state.errors,
 });
 
 const mapDispatchToProps = {
   setData,
   publishEvent,
   setErrors,
-}
+};
+
+EventForm.propTypes = {
+  form: PropTypes.object.isRequired,  // eslint-disable-line
+  errors: PropTypes.object, // eslint-disable-line
+  publishEvent: PropTypes.func.isRequired,
+  setErrors: PropTypes.func.isRequired,
+  setData: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventForm);

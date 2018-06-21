@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { media } from "../../../utils/styles/mediaQueries";
+import { media } from '../../../utils/styles/constants';
 
 export const Field = styled.div`
   display: flex;
@@ -27,6 +27,8 @@ export const RadioContainer = styled.div`
 `;
 
 export const DateTimeInput = styled.input`
+  border-color: ${props => (props.error ? '' : props.theme.warningRed)};
+  outline-color: ${props => (props.error ? '' : props.theme.warningRed)};
 `;
 
 export const Label = styled.label`

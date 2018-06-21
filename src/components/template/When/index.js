@@ -1,13 +1,19 @@
-import React from "react";
-// import PropTypes from "prop-types";
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { FormField } from "../../organisms/FormField";
+import { dataPropType, dateTimeFieldPropType } from '../../../utils/constants';
 
-import { Form, Header, InputContainer } from "./styles";
+import FormField from '../../organisms/FormField';
 
-export const When = ({ data, onChange }) => {
-  const { date, duration } = data;
-  return (
+import { Form, Header, InputContainer } from './styles';
+
+const When = ({
+  date,
+  duration,
+  onChange,
+  error,
+}) => (
   <Form>
     <Header>
       <h4>When</h4>
@@ -19,12 +25,12 @@ export const When = ({ data, onChange }) => {
         type="date"
         data={date}
         onChange={onChange}
-        isError={date.isValid.status}
-        errorInfo={date.isValid.info}
+        isError={error.date.status}
+        errorInfo={error.date.info}
       />
       <FormField
         titleDesc="DURATION"
-        type="numberInput"
+        type="numberInput" // enum
         data={duration}
         onChange={onChange}
         desc="hour"
@@ -33,5 +39,18 @@ export const When = ({ data, onChange }) => {
       />
     </InputContainer>
   </Form>
-  );
+);
+
+const mapStateToProps = state => ({
+  date: state.form.date,
+  duration: state.form.duration,
+});
+
+When.propTypes = {
+  date: dateTimeFieldPropType,
+  duration: dataPropType,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.object, // eslint-disable-line
 };
+
+export default connect(mapStateToProps, null)(When);

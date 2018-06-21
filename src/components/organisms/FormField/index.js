@@ -1,19 +1,29 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Input } from "../../atoms/Input";
-import { NumberInput } from "../../atoms/NumberInput";
-import { Title } from "../../atoms/Title";
-import { Tooltip } from "../../atoms/Tooltip";
+import {
+  dataPropType,
+  requiredDataPropType,
+  radioFieldPropType,
+  dateTimeFieldPropType,
+  FieldType,
+} from '../../../utils/constants';
 
-import { SelectField } from "../../molecules/SelectField";
-import { TextareaField } from "../../molecules/TextareaField";
+import Input from '../../atoms/Input';
+import NumberInput from '../../atoms/NumberInput';
+import Title from '../../atoms/Title';
+import Tooltip from '../../atoms/Tooltip';
 
-import { PaymentField } from "../PaymentField";
-import { DateField } from "../DateField";
+import SelectField from '../../molecules/SelectField';
+import TextareaField from '../../molecules/TextareaField';
 
-import { Field } from "./styles";
+import SelectData from '../SelectData';
+import PaymentField from '../PaymentField';
+import DateField from '../DateField';
 
-export const FormField = ({
+import { Field } from './styles';
+
+const FormField = ({
   titleDesc,
   titleMandatory,
   type,
@@ -23,29 +33,44 @@ export const FormField = ({
   ...other
 }) => (
   <Field>
-    <Title desc={titleDesc} mandatory={titleMandatory} />
-    {type === "input" && ( 
+    <Title desc={titleDesc} error={isError} mandatory={titleMandatory} />
+    {type === FieldType.INPUT && (
       <Input data={data} error={isError} {...other} />
     )}
-    {type === "numberInput" && ( 
-      <NumberInput data={data} error={isError} {...other} />
+    {type === FieldType.NUMBER_INPUT && (
+      <NumberInput data={data} {...other} />
     )}
-    {type === "textarea" && (
+    {type === FieldType.TEXTAREA && (
       <TextareaField data={data} error={isError} {...other} />
     )}
-    {type === "select" && ( 
+    {type === FieldType.SELECT && (
       <SelectField data={data} {...other} />
     )}
-    {type === "payment" && (
-      <PaymentField 
-        data={data} 
-        error={isError} 
-        {...other} 
-      />
+    {type === FieldType.SELECT_DATA && (
+      <SelectData data={data} {...other} />
     )}
-    {type === "date" && (
+    {type === FieldType.PAYMENT && (
+      <PaymentField data={data} error={isError} {...other} />
+    )}
+    {type === FieldType.DATE && (
       <DateField data={data} error={isError} {...other} />
     )}
     {!isError && <Tooltip isVisible={isError} text={errorInfo} />}
   </Field>
 );
+
+FormField.propTypes = {
+  data: PropTypes.oneOfType([
+    dataPropType,
+    requiredDataPropType,
+    radioFieldPropType,
+    dateTimeFieldPropType,
+  ]),
+  titleDesc: PropTypes.string,
+  titleMandatory: PropTypes.string,
+  type: PropTypes.string,
+  isError: PropTypes.bool,
+  errorInfo: PropTypes.string,
+};
+
+export default FormField;

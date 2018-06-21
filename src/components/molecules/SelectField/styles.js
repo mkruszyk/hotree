@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { media } from "../../../utils/styles/mediaQueries";
+import { media } from '../../../utils/styles/constants';
 
 export const Field = styled.div`
 `;

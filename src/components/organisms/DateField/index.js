@@ -1,89 +1,102 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { validate } from '../../../utils/validator';
+import { dateTimeFieldPropType } from '../../../utils/constants';
+import { setData } from '../../../store/actions/formActions';
 
-import { formatTime } from '../../../utils/formatTime';
-import { RadioInput } from "../../atoms/RadioInput";
+import formatTime from '../../../utils/formatTime';
+import RadioInput from '../../atoms/RadioInput';
 
-import { Field, Container, RadioContainer, DateTimeInput, Label } from "./styles";
+import { Field, Container, RadioContainer, DateTimeInput, Label } from './styles';
 
-export const DateField = (props) => {
-  const getMinimumDate = () => (
-    new Date().toISOString().slice(0, 10)
-  );
+const DateField = (props) => {
+  const {
+    date, time, day, error,
+  } = props;
+  const {
+    selected, options,
+  } = props.date;
+  const getMinimumDate = () => new Date().toISOString().slice(0, 10);
+  const handleDateAndTime = () => {
+    const fullDate = `${day.value}T${time.value}`;
+    props.onChange(date, fullDate);
+  };
   const handleTime = (e) => {
     e.preventDefault();
-    const { value } = e.target;
-    const payload = { ...props.data };
-    payload.time.value = value;
-    const formatted = formatTime(payload);
-    props.onChange(formatted);
+    const formatted = formatTime(props.data.selected, e.target.value);
+    props.onChange(time, formatted);
     handleDateAndTime();
   };
   const handleDay = (e) => {
     e.preventDefault();
-    const payload = { ...props.data };
-    payload.day.value = e.target.value;
-    props.onChange(payload);
+    props.onChange(day, e.target.value);
     handleDateAndTime();
   };
-  const handleAM_PM = (e) => {
-    const { value } = e.target;
-    const payload = { ...props.data };
-    payload.selectedValue = value;
-    const formatted = formatTime(payload);
-    props.onChange(formatted);
+  const handleAmPm = (e) => {
+    const formatted = formatTime(e.target.value, time.value);
+    props.setData(date.id, 'selected', e.target.value);
+    props.onChange(time, formatted);
   };
-  const handleDateAndTime = () => {
-    const payload = { ...props.data };
-    payload.value = `${payload.day.value}T${payload.time.value}`;
-    payload.isValid = validate(payload.id, payload.value);
-    props.onChange(payload);
-  }
-  const { selectedValue, options, day, time } = props.data;
   return (
     <Field>
-    <Container>
-      <DateTimeInput
-        id={day.id}
-        data={props.data}
-        name={day.id}
-        min={getMinimumDate()}
-        type={day.type}
-        onChange={handleDay}
-        onBlur={handleDateAndTime}
-      />
-      <Label>at</Label>
-    </Container>
-    <Container>
-      <DateTimeInput
-        id={time.id}
-        data={props.data}
-        min="01:00"
-        max="12:59"
-        name={time.id}
-        type={time.type}
-        onChange={handleTime}
-        onBlur={handleDateAndTime}
-      />
-      <RadioContainer>
-        {options.map(option => (
-          <RadioInput
-            withLeftMargin={option.id === "am"}
-            key={option.id}
-            id={option.id}
-            name={option.id}
-            checked={option.value === selectedValue}
-            desc={option.desc}
-            onChange={handleAM_PM}
-            onClick={handleDateAndTime}
-            value={option.value}
-          />
+      <Container>
+        <DateTimeInput
+          error={error}
+          id={day.id}
+          name={day.id}
+          min={getMinimumDate()}
+          type={day.type}
+          onChange={handleDay}
+          onBlur={handleDateAndTime}
+        />
+        <Label>at</Label>
+      </Container>
+      <Container>
+        <DateTimeInput
+          error={error}
+          id={time.id}
+          min="01:00"
+          max="12:59"
+          name={time.id}
+          type={time.type}
+          onChange={handleTime}
+          onBlur={handleDateAndTime}
+        />
+        <RadioContainer>
+          {options.map(option => (
+            <RadioInput
+              withLeftMargin={option.id === 'am'}
+              key={option.id}
+              id={option.id}
+              name={option.id}
+              checked={option.value === selected}
+              desc={option.desc}
+              onChange={handleAmPm}
+              onClick={handleDateAndTime}
+              value={option.value}
+            />
         ))}
-      </RadioContainer>
-    </Container>
-  </Field>
+        </RadioContainer>
+      </Container>
+    </Field>
   );
-}
+};
 
+const mapStateToProps = state => ({
+  date: state.form.date,
+  time: state.form.time,
+  day: state.form.day,
+});
 
+const mapDispatchToProps = {
+  setData,
+};
+
+DateField.propTypes = {
+  data: dateTimeFieldPropType,
+  onChange: PropTypes.func,
+  setData: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DateField);

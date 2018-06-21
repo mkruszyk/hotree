@@ -1,46 +1,40 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { validate } from '../../../utils/validator';
+import { setErrors } from '../../../store/actions/errorActions';
+import { radioFieldPropType, requiredDataPropType } from '../../../utils/constants';
 
-import { NumberInput } from "../../atoms/NumberInput";
-import { RadioInput } from "../../atoms/RadioInput";
+import NumberInput from '../../atoms/NumberInput';
+import RadioInput from '../../atoms/RadioInput';
 
-import { Field, PaidEvent } from "./styles";
+import { Field, PaidEvent } from './styles';
 
-export const PaymentField = ({ 
-  additionalData, 
-  data, 
-  onChange 
-}) => {
-  const { options, selectedValue } = data;
+const PaymentField = (props) => {
+  const { options, selected } = props.data;
   const handleOnChange = (e) => {
-    let payload = { ...data };
-    payload.selectedValue = e.target.value
-    onChange(payload);
-    if (payload.selectedValue === 'freeEvent') {
-      let event_fee = { ...additionalData }; 
-      event_fee.isValid = validate(payload.selectedValue, additionalData.value);
-      onChange(event_fee);
+    props.onChange(props.data, e.target.value);
+    if (e.target.value === 'freeEvent') {
+      const validatedValue = validate(e.target.value, props.additionalData.value);
+      props.setErrors(props.additionalData.id, validatedValue);
     }
-  }
-
-  const renderEventFee = (option) => {
-    return (
-      option === "paidEvent" && selectedValue === "paidEvent" && (
-        <NumberInput
-          id={additionalData.id}
-          name={additionalData.id}
-          data={additionalData}
-          additionalData={data.selectedValue}
-          desc="$"
-          placeholder="Fee"
-          onChange={onChange}
-          type={additionalData.type}
-          value={additionalData.value}
-        />
-      )
-    );
   };
+  const renderEventFee = option => (
+    option === 'paidEvent' && selected === 'paidEvent' && (
+    <NumberInput
+      id={props.additionalData.id}
+      error={props.error}
+      name={props.additionalData.id}
+      data={props.additionalData}
+      additionalData={props.data.selected}
+      desc="$"
+      placeholder="Fee"
+      onChange={props.onChange}
+      value={props.additionalData.value}
+    />
+    )
+  );
   return (
     <Field>
       {options.map(option => (
@@ -49,7 +43,7 @@ export const PaymentField = ({
             key={option.id}
             id={option.id}
             name={option.id}
-            checked={option.value === selectedValue}
+            checked={option.value === selected}
             desc={option.desc}
             onChange={handleOnChange}
             value={option.value}
@@ -60,3 +54,15 @@ export const PaymentField = ({
     </Field>
   );
 };
+
+const mapDispatchToProps = {
+  setErrors,
+};
+
+PaymentField.propTypes = {
+  additionalData: requiredDataPropType,
+  data: radioFieldPropType,
+  onChange: PropTypes.func,
+};
+
+export default connect(null, mapDispatchToProps)(PaymentField);

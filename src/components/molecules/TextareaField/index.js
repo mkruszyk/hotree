@@ -1,21 +1,24 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Textarea } from '../../atoms/Textarea';
+import { requiredDataPropType } from '../../../utils/constants';
+import Textarea from '../../atoms/Textarea';
 
-import { Field, TextareaDescription, Description } from "./styles";
+import { Field, TextareaDescription, Description } from './styles';
 
-export const TextareaField = ({
+const TextareaField = ({
   data,
   desc,
-  error,
   maxLength,
+  error,
   onChange,
   placeholder,
 }) => (
-  <Field error={error}>
-    <Textarea 
+  <Field>
+    <Textarea
       data={data}
       desc={desc}
+      error={error}
       maxLength={maxLength}
       onChange={onChange}
       placeholder={placeholder}
@@ -26,3 +29,13 @@ export const TextareaField = ({
     </TextareaDescription>
   </Field>
 );
+
+TextareaField.propTypes = {
+  data: requiredDataPropType,
+  desc: PropTypes.string,
+  maxLength: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+};
+
+export default TextareaField;

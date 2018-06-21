@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { media } from "../../../utils/styles/mediaQueries";
+import { media } from '../../../utils/styles/constants';
 
 export const Field = styled.div`
   align-items: center;
   display: flex;
   height: 55px;
-  margin-left: ${props => props.withLeftMargin ? '14px' : '0'}
+  margin-left: ${props => (props.withLeftMargin ? '14px' : '0')}
 `;
 
 export const Radio = styled.input`

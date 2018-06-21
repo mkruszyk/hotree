@@ -1,11 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { media } from "../../../utils/styles/mediaQueries";
+import { media } from '../../../utils/styles/constants';
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  height: 43px;
   grid-area: tooltip;
   position: relative;
   @media (${media.mobile}) {
@@ -26,7 +25,7 @@ export const Text = styled.span`
   color: white;
   font-size: 1.2rem;
   text-align: center;
-  padding: 8px 0px;
+  padding: 6px 0px;
   position: relative;
   width: 125px;
   visibility: visible;

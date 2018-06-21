@@ -1,9 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FieldTitle, Mandatory } from './styles';
 
-export const Title = ({ desc, mandatory, error }) => (
+const Title = ({ desc, mandatory, error }) => (
   <FieldTitle error={error}>
     {desc}
     {mandatory && (<Mandatory>  *</Mandatory>)}
   </FieldTitle>
 );
+
+Title.propTypes = {
+  desc: PropTypes.string.isRequired,
+  error: PropTypes.bool,
+  mandatory: PropTypes.string,
+};
+
+export default Title;

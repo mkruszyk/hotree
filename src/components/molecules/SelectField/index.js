@@ -1,33 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Select } from '../../atoms/Select';
+import Select from '../../atoms/Select';
 
 import { Field, Description } from './styles';
 
-export const SelectField = ({   // wywalic
-  data,
-  defaultInfo,
-  defaultValue,
-  desc,
-  email,
-  id, 
-  placeholder,
-  onChange, 
-  options, 
-  value
-}) => (
+const SelectField = ({ desc, ...other }) => (
   <Field>
-    <Select 
-      id={id} 
-      data={data}
-      defaultInfo={defaultInfo}
-      defaultValue={defaultValue}
-      email={email}
-      placeholder={placeholder}
-      options={options} 
-      onChange={onChange} 
-      value={value}
+    <Select
+      {...other}
     />
     <Description>{desc}</Description>
   </Field>
 );
+
+SelectField.propTypes = {
+  desc: PropTypes.string,
+};
+
+export default SelectField;

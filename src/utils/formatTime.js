@@ -1,21 +1,22 @@
-export const formatTime = (data) => {
-  const { selectedValue } = data;
-  const { value } = data.time;
+const formatTime = (selected, value) => {
   if (value.length === 0) {
-    return data;
+    return value;
   }
+  let time = value;
 
-  const arr = value.split(":");
+  const arr = time.split(':');
 
   let hours = Number(arr[0]);
   let minutes = Number(arr[1]);
 
-  if (selectedValue === "pm" && hours < 12) { hours = hours + 12; }
-  if (selectedValue === "am" && hours >= 12) { hours = hours - 12; }
+  if (selected === 'pm' && hours < 12) { hours += 12; }
+  if (selected === 'am' && hours >= 12) { hours -= 12; }
   if (hours < 10) { hours = `0${hours}`; }
   if (minutes < 10) { minutes = `0${minutes}`; }
-  
-  data.time.value = `${hours}:${minutes}`;
-  
-  return data;
-};  
+
+  time = `${hours}:${minutes}`;
+
+  return time;
+};
+
+export default formatTime;

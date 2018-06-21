@@ -1,23 +1,110 @@
-import { SET_DATA, SET_ERRORS } from '../actions/actionTypes';
+import { SET_DATA } from '../actions/actionTypes';
 
-import { initialState } from '../utils/constants/formInitialState';
+const initialState = {
+  title: {
+    id: 'title',
+    type: 'text',
+    toValidate: true,
+    value: '',
+  },
+  description: {
+    id: 'description',
+    type: 'text',
+    toValidate: true,
+    value: '',
+  },
+  category: {
+    id: 'category',
+    type: 'select',
+    value: '',
+  },
+  paidEvent: {
+    id: 'paidEvent',
+    type: 'radio',
+    selected: 'freeEvent',
+    options: [
+      {
+        id: 'freeEvent',
+        desc: 'Free event',
+        value: 'freeEvent',
+      },
+      {
+        id: 'paidEvent',
+        desc: 'Paid event',
+        value: 'paidEvent',
+      },
+    ],
+  },
+  eventFee: {
+    id: 'eventFee',
+    type: 'number',
+    value: '',
+    toValidate: true,
+  },
+  reward: {
+    id: 'reward',
+    type: 'number',
+    value: '',
+  },
+  responsible: {
+    id: 'responsible',
+    type: 'select',
+    value: {
+      id: 3,
+    },
+  },
+  email: {
+    id: 'email',
+    type: 'email',
+    value: 'walter.nelson@hussa.rs',
+    toValidate: true,
+  },
+  date: {
+    id: 'date',
+    type: 'date',
+    value: '',
+    selected: 'am',
+    toValidate: true,
+    options: [
+      {
+        id: 'am',
+        desc: 'AM',
+        value: 'am',
+      },
+      {
+        id: 'pm',
+        desc: 'PM',
+        value: 'pm',
+      },
+    ],
+  },
+  day: {
+    id: 'day',
+    type: 'date',
+    value: '',
+  },
+  time: {
+    id: 'time',
+    type: 'time',
+    value: '',
+  },
+  duration: {
+    id: 'duration',
+    type: 'number',
+    value: '',
+  },
+};
 
 const formReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case SET_DATA:
       return {
         ...state,
-        [action.payload.id]: action.payload
-      }
-    case SET_ERRORS: {
-        return {
-        ...state,
-        [action.name]: { ...state[action.name], isValid: action.payload }
-      }
-    }
+        [action.name]: { ...state[action.name], [action.key]: action.value },
+      };
     default:
       return state;
   }
 };
 
-export default formReducer; 
+export default formReducer;
