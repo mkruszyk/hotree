@@ -1,35 +1,16 @@
-import { SET_ERRORS } from '../actions/actionTypes';
+import { SET_FIELD_ERROR, SET_FORM_ERRORS } from '../actions/actionTypes';
 
-const initialState = {
-  title: {
-    status: true,
-    info: '',
-  },
-  description: {
-    status: true,
-    info: '',
-  },
-  eventFee: {
-    status: true,
-    info: '',
-  },
-  email: {
-    status: true,
-    info: '',
-  },
-  date: {
-    status: true,
-    info: '',
-  },
-};
+const initialState = {};
 
 const errorReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_ERRORS:
+    case SET_FIELD_ERROR:
       return {
         ...state,
         [action.name]: action.payload,
       };
+    case SET_FORM_ERRORS:
+      return action.payload;
     default:
       return state;
   }

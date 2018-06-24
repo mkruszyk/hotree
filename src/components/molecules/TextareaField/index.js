@@ -16,8 +16,8 @@ const TextareaField = ({
 }) => (
   <Field>
     <Textarea
-      data={data}
       desc={desc}
+      data={data}
       error={error}
       maxLength={maxLength}
       onChange={onChange}
@@ -32,7 +32,10 @@ const TextareaField = ({
 
 TextareaField.propTypes = {
   data: requiredDataPropType,
-  error: PropTypes.bool,
+  error: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   desc: PropTypes.string,
   maxLength: PropTypes.string,
   onChange: PropTypes.func.isRequired,

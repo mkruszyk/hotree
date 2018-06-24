@@ -10,29 +10,22 @@ const Select = ({
   placeholder,
   onChange,
   options,
-}) => {
-  const handleOnChange = (e) => {
-    e.preventDefault(e);
-    const value = options.find(item => item.id === Number(e.target.value));
-    onChange(data, value);
-  };
-  return (
-    <SelectContainer
-      id={data.id}
-      onChange={handleOnChange}
-      value={data.value.id || defaultValue}
-    >
-      {placeholder && (
-        <Option value="default" disabled>{placeholder}</Option>
+}) => (
+  <SelectContainer
+    id={data.id}
+    onChange={e => onChange(e, options)}
+    value={data.value.name || defaultValue}
+  >
+    {placeholder && (
+    <Option value="default" disabled>{placeholder}</Option>
       )}
-      {options.map(item => (
-        <Option key={item.id} value={item.id}>
-          {item.name}
-        </Option>
+    {options.map(item => (
+      <Option key={item.id} value={item.name}>
+        {item.name}
+      </Option>
       ))}
-    </SelectContainer>
-  );
-};
+  </SelectContainer>
+);
 
 Select.propTypes = {
   data: dataPropType,

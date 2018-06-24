@@ -2,69 +2,88 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { validate } from '../../../utils/validator';
-import { setErrors } from '../../../store/actions/errorActions';
+import { validateField } from '../../../utils/validator';
+import { setData } from '../../../store/actions/formActions';
+import { setFieldError } from '../../../store/actions/errorActions';
 import { radioFieldPropType, requiredDataPropType } from '../../../utils/constants';
 
 import NumberInput from '../../atoms/NumberInput';
 import RadioInput from '../../atoms/RadioInput';
 
-import { Field, PaidEvent } from './styles';
+import { Field, Container } from './styles';
 
 const PaymentField = (props) => {
-  const { options, selected } = props.data;
-  const handleOnChange = (e) => {
-    props.onChange(props.data, e.target.value);
+  const {
+    data,
+    otherData,
+    handleInput,
+    handleRadio,
+    error,
+  } = props;
+  const { options, selected } = data;
+  const handleEventType = (e) => {
     if (e.target.value === 'freeEvent') {
-      const validatedValue = validate(e.target.value, props.additionalData.value);
-      props.setErrors(props.additionalData.id, validatedValue);
+      const validatedValue = validateField(e.target.value, otherData.value, selected);
+      props.setFieldError(otherData.id, validatedValue);
+      handleInput({ target: { id: otherData.id, value: '' } });
     }
+    handleRadio(data.id, e);
+  };
+  const handleEventFee = (e) => {
+    const validatedValue = validateField(e.target.id, e.target.value, selected);
+    props.setFieldError(e.target.id, validatedValue);
+    handleInput(e);
   };
   const renderEventFee = option => (
     option === 'paidEvent' && selected === 'paidEvent' && (
     <NumberInput
-      id={props.additionalData.id}
-      error={props.error}
-      name={props.additionalData.id}
-      data={props.additionalData}
-      additionalData={props.data.selected}
+      id={otherData.id}
+      error={error}
+      name={otherData.id}
+      data={otherData}
       desc="$"
       placeholder="Fee"
-      onChange={props.onChange}
-      value={props.additionalData.value}
+      onChange={handleEventFee}
+      toValidate={otherData.toValidate}
+      value={otherData.value}
     />
     )
   );
   return (
     <Field>
       {options.map(option => (
-        <PaidEvent key={option.id}>
+        <Container key={option.id}>
           <RadioInput
             key={option.id}
             id={option.id}
             name={option.id}
             checked={option.value === selected}
             desc={option.desc}
-            onChange={handleOnChange}
+            onChange={handleEventType}
             value={option.value}
           />
           {renderEventFee(option.id)}
-        </PaidEvent>
+        </Container>
       ))}
     </Field>
   );
 };
 
 const mapDispatchToProps = {
-  setErrors,
+  setFieldError,
+  setData,
 };
 
 PaymentField.propTypes = {
-  additionalData: requiredDataPropType,
+  otherData: requiredDataPropType,
   data: radioFieldPropType,
-  error: PropTypes.bool,
-  setErrors: PropTypes.func,
-  onChange: PropTypes.func,
+  error: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
+  setFieldError: PropTypes.func,
+  handleInput: PropTypes.func,
+  handleRadio: PropTypes.func,
 };
 
 export default connect(null, mapDispatchToProps)(PaymentField);

@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 
 import { Container, TooltipWrapper, Text } from './styles';
 
-const Tooltip = ({ text }) => (
-  <Container>
+const Tooltip = ({ error }) => (
+  <Container error={error}>
     <TooltipWrapper>
-      <Text>{text}</Text>
+      <Text>{error}</Text>
     </TooltipWrapper>
   </Container>
 );
 
 Tooltip.propTypes = {
-  text: PropTypes.string,
+  error: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
 };
 
 export default Tooltip;

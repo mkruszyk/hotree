@@ -10,7 +10,7 @@ import FormField from '../../organisms/FormField';
 import { Form, Header, InputContainer } from './styles';
 
 const Coordinator = ({
-  email, error, responsible, onChange,
+  email, error, handleSelect, handleInput, responsible,
 }) => (
   <Form>
     <Header>
@@ -21,22 +21,20 @@ const Coordinator = ({
         titleDesc="RESPONSIBLE"
         titleMandatory="true"
         type="selectData"
-        additionalData={email}
+        otherData={email}
         data={responsible}
-        defaultValue={3}
+        defaultValue="Walter"
         defaultInfo="Me - "
         options={employes}
-        onChange={onChange}
-        isError={!false}
+        onChange={handleSelect}
       />
       <FormField
         titleDesc="EMAIL"
         type="input"
         data={email}
         placeholder="Email"
-        onChange={onChange}
-        isError={error.email.status}
-        errorInfo={error.email.info}
+        onChange={handleInput}
+        isError={error.email}
       />
     </InputContainer>
   </Form>
@@ -51,7 +49,8 @@ Coordinator.propTypes = {
   responsible: dataPropType,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   email: requiredDataPropType,
-  onChange: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired,
+  handleSelect: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, null)(Coordinator);

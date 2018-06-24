@@ -11,7 +11,8 @@ import { Form, Header, InputContainer } from './styles';
 const When = ({
   date,
   duration,
-  onChange,
+  handleInput,
+  handleRadio,
   error,
 }) => (
   <Form>
@@ -24,18 +25,17 @@ const When = ({
         titleMandatory="true"
         type="date"
         data={date}
-        onChange={onChange}
-        isError={error.date.status}
-        errorInfo={error.date.info}
+        handleInput={handleInput}
+        handleRadio={handleRadio}
+        isError={error.date}
       />
       <FormField
         titleDesc="DURATION"
         type="numberInput" // enum
         data={duration}
-        onChange={onChange}
+        onChange={handleInput}
         desc="hour"
         placeholder="Number"
-        isError={!false}
       />
     </InputContainer>
   </Form>
@@ -49,7 +49,8 @@ const mapStateToProps = state => ({
 When.propTypes = {
   date: dateTimeFieldPropType,
   duration: dataPropType,
-  onChange: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired,
+  handleRadio: PropTypes.func.isRequired,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 

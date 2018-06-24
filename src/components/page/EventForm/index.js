@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { setData, publishEvent } from '../../../store/actions/formActions';
-import { setErrors } from '../../../store/actions/errorActions';
-import { validate, validateEvent } from '../../../utils/validator';
+import { setFieldError, setFormErrors } from '../../../store/actions/errorActions';
+import { validateField, validateEvent } from '../../../utils/validator';
 import About from '../../template/About';
 import Coordinator from '../../template/Coordinator';
 import When from '../../template/When';
@@ -48,59 +48,46 @@ class EventForm extends Component {
       });
     } else {
       console.log('errors: ', errors); // eslint-disable-line
-      this.isFormValid();
+      this.props.setFormErrors(errors);
     }
   };
-  isFormValid = () => {
-    const { form } = this.props;
-    this.props.setErrors(
-      'title',
-      validate('title', form.title.value),
-    );
-    this.props.setErrors(
-      'description',
-      validate('description', form.description.value),
-    );
-    this.props.setErrors(
-      'paidEvent',
-      validate(form.paidEvent.selected, form.eventFee.value),
-    );
-    this.props.setErrors(
-      'email',
-      validate('email', form.email.value),
-    );
-    this.props.setErrors(
-      'date',
-      validate('date', this.getDate()),
-    );
-  };
-  handleOnChange = (data, value) => {
-    if (data.type === 'radio') {
-      this.props.setData(data.id, 'selected', value);
-    } else {
-      if (data.toValidate === true) {
-        const validatedValue = validate(data.id, value);
-        this.props.setErrors(data.id, validatedValue);
-      }
-      if (data.id === 'eventFee') {
-        const validatedValue = validate(this.props.form.paidEvent.selected, value);
-        this.props.setErrors(data.id, validatedValue);
-      }
-      this.props.setData(data.id, 'value', value);
+  handleInput = (e, toValidate) => {
+    const {
+      id, value,
+    } = e.target;
+    if (toValidate) {
+      const validatedValue = validateField(id, value);
+      this.props.setFieldError(id, validatedValue);
     }
+    this.props.setData(id, 'value', value);
+  }
+  handleRadio = (id, e) => {
+    const { value } = e.target;
+    this.props.setData(id, 'selected', value);
+  }
+  handleSelect = (e, options) => {
+    e.preventDefault();
+    const { value, id } = e.target;
+    const selected = options.find(item => item.name === (value));
+    this.props.setData(id, 'value', selected);
   }
   renderForm = () => (
     <Container>
       <About
-        onChange={this.handleOnChange}
+        handleInput={this.handleInput}
+        handleSelect={this.handleSelect}
+        handleRadio={this.handleRadio}
         error={this.props.errors}
       />
       <Coordinator
-        onChange={this.handleOnChange}
+        handleInput={this.handleInput}
+        handleSelect={this.handleSelect}
         error={this.props.errors}
       />
       <When
-        onChange={this.handleOnChange}
+        handleInput={this.handleInput}
+        handleSelect={this.handleSelect}
+        handleRadio={this.handleRadio}
         error={this.props.errors}
       />
       <Button
@@ -134,14 +121,16 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setData,
   publishEvent,
-  setErrors,
+  setFieldError,
+  setFormErrors,
 };
 
 EventForm.propTypes = {
   form: PropTypes.object.isRequired,  // eslint-disable-line
   errors: PropTypes.object, // eslint-disable-line
   publishEvent: PropTypes.func.isRequired,
-  setErrors: PropTypes.func.isRequired,
+  setFieldError: PropTypes.func.isRequired,
+  setFormErrors: PropTypes.func.isRequired,
   setData: PropTypes.func.isRequired,
 };
 

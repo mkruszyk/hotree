@@ -12,7 +12,10 @@ const Title = ({ desc, mandatory, error }) => (
 
 Title.propTypes = {
   desc: PropTypes.string.isRequired,
-  error: PropTypes.bool,
+  error: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
   mandatory: PropTypes.string,
 };
 

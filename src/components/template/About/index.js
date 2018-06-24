@@ -15,8 +15,10 @@ const About = ({
   paidEvent,
   error,
   eventFee,
+  handleInput,
+  handleRadio,
+  handleSelect,
   reward,
-  onChange,
 }) => (
   <Form>
     <Header>
@@ -28,10 +30,9 @@ const About = ({
         titleMandatory="true"
         type="input"
         data={title}
-        onChange={onChange}
+        onChange={handleInput}
         placeholder="Make it short and clear"
-        isError={error.title.status}
-        errorInfo={error.title.info}
+        isError={error.title}
       />
       <FormField
         titleDesc="DESCRIPTION"
@@ -41,9 +42,8 @@ const About = ({
         desc="Max length 140 characters"
         maxLength="140"
         placeholder="Write about your event, be creative"
-        onChange={onChange}
-        isError={error.description.status}
-        errorInfo={error.description.info}
+        onChange={handleInput}
+        isError={error.description}
       />
       <FormField
         titleDesc="CATEGORY"
@@ -52,18 +52,17 @@ const About = ({
         desc="Describes topic and people who should be interest in this event"
         defaultValue="default"
         options={categories}
-        onChange={onChange}
+        onChange={handleSelect}
         placeholder="Select category (skills, interests, locations)"
-        isError={!false}
       />
       <FormField
         titleDesc="PAYMENT"
         type="payment"
         data={paidEvent}
-        additionalData={eventFee}
-        onChange={onChange}
-        isError={error.eventFee.status}
-        errorInfo={error.eventFee.info}
+        otherData={eventFee}
+        handleInput={handleInput}
+        handleRadio={handleRadio}
+        isError={error.eventFee}
       />
       <FormField
         titleDesc="REWARD"
@@ -71,8 +70,7 @@ const About = ({
         desc="reward points for attendance"
         data={reward}
         placeholder="Number"
-        onChange={onChange}
-        isError={!false}
+        onChange={handleInput}
       />
     </InputContainer>
   </Form>
@@ -94,7 +92,9 @@ About.propTypes = {
   paidEvent: radioFieldPropType,
   eventFee: requiredDataPropType,
   reward: dataPropType,
-  onChange: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired,
+  handleRadio: PropTypes.func.isRequired,
+  handleSelect: PropTypes.func.isRequired,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 

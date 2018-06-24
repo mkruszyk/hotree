@@ -8,8 +8,8 @@ export const Container = styled.div`
 
 export const InputWrapper = styled.input`
   width: ${inputWidth.text};
-  border-color: ${props => (props.error ? '' : props.theme.warningRed)};
-  outline-color: ${props => (props.error ? '' : props.theme.warningRed)};
+  border-color: ${props => (props.error ? props.theme.warningRed : '')};
+  outline-color: ${props => (props.error ? props.theme.warningRed : '')};
 `;
 
 export const Label = styled.p`

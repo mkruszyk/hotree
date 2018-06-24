@@ -9,7 +9,7 @@ export const Field = styled.div`
   }
 `;
 
-export const PaidEvent = styled.div`
+export const Container = styled.div`
   align-items: center;
   display: flex;
 `;

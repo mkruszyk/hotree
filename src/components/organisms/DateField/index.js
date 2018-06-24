@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { dateTimeFieldPropType, dataPropType } from '../../../utils/constants';
-import { setData } from '../../../store/actions/formActions';
+import { dateTimeFieldPropType, dataPropType, radioFieldPropType, requiredDataPropType } from '../../../utils/constants';
 
 import formatTime from '../../../utils/formatTime';
 import RadioInput from '../../atoms/RadioInput';
@@ -12,31 +11,33 @@ import { Field, Container, RadioContainer, DateTimeInput, Label } from './styles
 
 const DateField = (props) => {
   const {
-    date, time, day, error,
+    date,
+    time,
+    day,
+    midday,
+    error,
+    handleInput,
+    handleRadio,
   } = props;
-  const {
-    selected, options,
-  } = props.date;
   const getMinimumDate = () => new Date().toISOString().slice(0, 10);
-  const handleDateAndTime = () => {
+  const setDateAndTime = () => {
     const fullDate = `${day.value}T${time.value}`;
-    props.onChange(date, fullDate);
+    handleInput({ target: { id: date.id, value: fullDate } }, date.toValidate);
   };
   const handleTime = (e) => {
     e.preventDefault();
-    const formatted = formatTime(props.date.selected, e.target.value);
-    props.onChange(time, formatted);
-    handleDateAndTime();
+    const formatted = formatTime(date.selected, e.target.value);
+    handleInput({ target: { id: time.id, value: formatted } });
+    setDateAndTime();
   };
   const handleDay = (e) => {
-    e.preventDefault();
-    props.onChange(day, e.target.value);
-    handleDateAndTime();
+    handleInput(e);
+    setDateAndTime();
   };
   const handleAmPm = (e) => {
     const formatted = formatTime(e.target.value, time.value);
-    props.setData(date.id, 'selected', e.target.value);
-    props.onChange(time, formatted);
+    handleRadio(midday.id, e);
+    handleInput({ target: { id: time.id, value: formatted } });
   };
   return (
     <Field>
@@ -48,7 +49,7 @@ const DateField = (props) => {
           min={getMinimumDate()}
           type={day.type}
           onChange={handleDay}
-          onBlur={handleDateAndTime}
+          onBlur={setDateAndTime}
         />
         <Label>at</Label>
       </Container>
@@ -61,19 +62,18 @@ const DateField = (props) => {
           name={time.id}
           type={time.type}
           onChange={handleTime}
-          onBlur={handleDateAndTime}
+          onBlur={setDateAndTime}
         />
         <RadioContainer>
-          {options.map(option => (
+          {midday.options.map(option => (
             <RadioInput
               withLeftMargin={option.id === 'am'}
               key={option.id}
               id={option.id}
               name={option.id}
-              checked={option.value === selected}
+              checked={option.value === midday.selected}
               desc={option.desc}
               onChange={handleAmPm}
-              onClick={handleDateAndTime}
               value={option.value}
             />
         ))}
@@ -87,19 +87,20 @@ const mapStateToProps = state => ({
   date: state.form.date,
   time: state.form.time,
   day: state.form.day,
+  midday: state.form.midday,
 });
-
-const mapDispatchToProps = {
-  setData,
-};
 
 DateField.propTypes = {
   date: dateTimeFieldPropType,
   day: dataPropType,
-  time: dataPropType,
-  error: PropTypes.bool,
-  onChange: PropTypes.func,
-  setData: PropTypes.func,
+  time: requiredDataPropType,
+  midday: radioFieldPropType,
+  error: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+  handleInput: PropTypes.func,
+  handleRadio: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DateField);
+export default connect(mapStateToProps, null)(DateField);

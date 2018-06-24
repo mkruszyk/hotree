@@ -50,7 +50,7 @@ const initialState = {
     id: 'responsible',
     type: 'select',
     value: {
-      id: 3,
+      name: 'Walter',
     },
   },
   email: {
@@ -63,8 +63,12 @@ const initialState = {
     id: 'date',
     type: 'date',
     value: '',
-    selected: 'am',
     toValidate: true,
+  },
+  midday: {
+    id: 'midday',
+    type: 'radio',
+    selected: 'am',
     options: [
       {
         id: 'am',

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { media } from '../../../utils/styles/constants';
 
 export const Container = styled.div`
+  visibility: ${props => (props.error ? 'visible' : 'hidden')};
   display: flex;
   justify-content: center;
   grid-area: tooltip;
@@ -28,7 +29,6 @@ export const Text = styled.span`
   padding: 6px 0px;
   position: relative;
   width: 125px;
-  visibility: visible;
   @media (${media.mobile}) {
     width: 200px;
     font-size: 1.4rem;

@@ -29,7 +29,6 @@ const FormField = ({
   type,
   data,
   isError,
-  errorInfo,
   ...other
 }) => (
   <Field>
@@ -55,7 +54,7 @@ const FormField = ({
     {type === FieldType.DATE && (
       <DateField data={data} error={isError} {...other} />
     )}
-    {!isError && <Tooltip isVisible={isError} text={errorInfo} />}
+    {isError && <Tooltip error={isError} />}
   </Field>
 );
 
@@ -69,7 +68,10 @@ FormField.propTypes = {
   titleDesc: PropTypes.string,
   titleMandatory: PropTypes.string,
   type: PropTypes.string,
-  isError: PropTypes.bool,
+  isError: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   errorInfo: PropTypes.string,
 };
 

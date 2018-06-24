@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { media } from '../../../utils/styles/constants';
 
 export const FieldTitle = styled.div`
-  color: ${props => (props.error ? props.theme.lightBlue : props.theme.warningRed)};
+  color: ${props => (props.error ? props.theme.warningRed : props.theme.lightBlue)};
   text-transform: uppercase;
   width: 150px;
   margin-top: 8px;

@@ -27,8 +27,8 @@ export const RadioContainer = styled.div`
 `;
 
 export const DateTimeInput = styled.input`
-  border-color: ${props => (props.error ? '' : props.theme.warningRed)};
-  outline-color: ${props => (props.error ? '' : props.theme.warningRed)};
+  border-color: ${props => (props.error ? props.theme.warningRed : '')};
+  outline-color: ${props => (props.error ? props.theme.warningRed : '')};
 `;
 
 export const Label = styled.label`
