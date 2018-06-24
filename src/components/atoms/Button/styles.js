@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonPrototype = styled.button`
+const ButtonWrapper = styled.button`
   width: 160px;
   height: 50px;
   background-color: ${props => props.theme.orange};
@@ -16,4 +16,4 @@ const ButtonPrototype = styled.button`
   }
 `;
 
-export default ButtonPrototype;
+export default ButtonWrapper;

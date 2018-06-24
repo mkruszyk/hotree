@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { media } from '../../../utils/styles/constants';
 
-export const Field = styled.div`
+export const Container = styled.div`
   align-items: center;
   display: flex;
   height: 55px;

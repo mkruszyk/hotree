@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { media } from '../../../utils/styles/constants';
 
-export const FieldTitle = styled.div`
+export const TitleWrapper = styled.div`
   color: ${props => (props.error ? props.theme.warningRed : props.theme.lightBlue)};
   text-transform: uppercase;
   width: 150px;

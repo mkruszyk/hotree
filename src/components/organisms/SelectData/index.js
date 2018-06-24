@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// import { validateField } from '../../../utils/validator';
 import { setData } from '../../../store/actions/formActions';
-import { setFieldError } from '../../../store/actions/errorActions';
 import { requiredDataPropType, dataPropType } from '../../../utils/constants';
-import { SelectContainer, Default, Others, Option } from './styles';
+import { SelectWrapper, Default, Others, Option } from './styles';
 
 const SelectData = (props) => {
   const {
@@ -17,8 +15,6 @@ const SelectData = (props) => {
     options,
   } = props;
   const setAddData = (value) => {
-    // const validateEmail = validateField(otherData.type, value.email);
-    // props.setFieldError(otherData.type, validateEmail);
     props.setData(otherData.id, 'value', value.email);
   };
   const handleOnChange = (e) => {
@@ -28,7 +24,7 @@ const SelectData = (props) => {
     setAddData(selected);
   };
   return (
-    <SelectContainer
+    <SelectWrapper
       id={data.id}
       onChange={handleOnChange}
       value={data.value.name || defaultValue}
@@ -55,13 +51,12 @@ const SelectData = (props) => {
           </Option>
           ))}
       </Others>
-    </SelectContainer>
+    </SelectWrapper>
   );
 };
 
 const mapDispatchToProps = {
   setData,
-  setFieldError,
 };
 
 SelectData.propTypes = {
@@ -70,7 +65,6 @@ SelectData.propTypes = {
   defaultInfo: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setData: PropTypes.func.isRequired,
-  setFieldError: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

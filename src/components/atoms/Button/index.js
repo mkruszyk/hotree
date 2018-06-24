@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ButtonPrototype from './styles';
+import ButtonWrapper from './styles';
 
 const Button = ({
   onClick,
   title,
 }) => (
-  <ButtonPrototype
+  <ButtonWrapper
     onClick={onClick}
   >
     {title}
-  </ButtonPrototype>
+  </ButtonWrapper>
 );
 
 Button.propTypes = {

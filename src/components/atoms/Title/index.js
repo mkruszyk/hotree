@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FieldTitle, Mandatory } from './styles';
+import { TitleWrapper, Mandatory } from './styles';
 
 const Title = ({ desc, mandatory, error }) => (
-  <FieldTitle error={error}>
+  <TitleWrapper error={error}>
     {desc}
     {mandatory && (<Mandatory>  *</Mandatory>)}
-  </FieldTitle>
+  </TitleWrapper>
 );
 
 Title.propTypes = {

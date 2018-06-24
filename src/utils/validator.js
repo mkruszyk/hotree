@@ -12,7 +12,7 @@ export const validateField = (type, value, selected) => {
       } break;
     case 'description':
       if (isEmpty(value)) {
-        error = 'Description cannot be empty';
+        error = 'Description is required';
       } break;
     case 'eventFee':
       if (isEmpty(value) && selected === 'paidEvent') {
@@ -40,7 +40,7 @@ export const validateEvent = (props) => {
   }
 
   if (isEmpty(props.description)) {
-    errors.description = 'Description cannot be empty';
+    errors.description = 'Description is required';
   }
 
   if (props.event_fee === 0 && props.paid_event === true) {

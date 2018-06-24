@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { inputWidth } from '../../../utils/styles/constants';
 import arrow from '../../../assets/images/arrow.svg';
 
-export const SelectContainer = styled.select`
+export const SelectWrapper = styled.select`
   -webkit-appearance: none;
   -moz-appearance: none;
   width: ${inputWidth.select};

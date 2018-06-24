@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Field, Radio, RadioDescription } from './styles';
+import { Container, Radio, RadioDescription } from './styles';
 
 const RadioInput = props => (
-  <Field withLeftMargin={props.withLeftMargin}>
+  <Container withLeftMargin={props.withLeftMargin}>
     <Radio
       id={props.id}
       name={props.name}
@@ -17,7 +17,7 @@ const RadioInput = props => (
     <RadioDescription>
       {props.desc}
     </RadioDescription>
-  </Field>
+  </Container>
 );
 
 RadioInput.propTypes = {

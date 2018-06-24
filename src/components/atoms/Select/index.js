@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { dataPropType } from '../../../utils/constants';
-import { SelectContainer, Option } from './styles';
+import { SelectWrapper, Option } from './styles';
 
 const Select = ({
   data,
@@ -11,7 +11,7 @@ const Select = ({
   onChange,
   options,
 }) => (
-  <SelectContainer
+  <SelectWrapper
     id={data.id}
     onChange={e => onChange(e, options)}
     value={data.value.name || defaultValue}
@@ -24,7 +24,7 @@ const Select = ({
         {item.name}
       </Option>
       ))}
-  </SelectContainer>
+  </SelectWrapper>
 );
 
 Select.propTypes = {
